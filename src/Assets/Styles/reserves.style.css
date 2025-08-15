@@ -1,0 +1,69 @@
+.date-picker-input-rezervs {
+    padding: 10px;
+    border: 1px solid gray;
+    border-radius: 8px;
+    font-size: 16px;
+    background-color: transparent;
+    transition: all 0.3s ease;
+    color: #333;
+}
+
+
+.date-picker-input-rezervs:focus {
+    outline: none;
+    border-color: #4caf50;
+    box-shadow: 0 0 5px rgba(76, 175, 80, 0.6);
+    background-color: #fff;
+}
+
+.ant-drawer-content-wrapper {
+    width: auto !important;
+}
+
+@media (max-width: 768px) {
+    .thon_home_datepickers {
+        margin-top: 20px;
+        display: flex;
+    }
+}
+
+
+.web {
+    max-width: max-content;
+    width: 100%;
+    padding: 5px 10px;
+    font-size: 12px;
+    border-radius: 35px;
+    display: flex;
+    align-items: center;
+    background-color: var(--rezerv-status-container-bg-colorBlue);
+    color: var(--rezerv-status-container-text-colorBlue);
+
+    .web-border {
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        background-color: var(--rezerv-status-container-text-colorBlue);
+        margin-right: 10px;
+    }
+}
+
+.ofis {
+    max-width: max-content;
+    width: 100%;
+    padding: 5px 10px;
+    font-size: 12px;
+    border-radius: 35px;
+    display: flex;
+    align-items: center;
+    background-color: var(--rezerv-status-container-bg-colorRed);
+    color: var(--rezerv-status-container-text-colorRed);
+
+    .ofis-border {
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        background-color: var(--rezerv-status-container-text-colorRed);
+        margin-right: 10px;
+    }
+}

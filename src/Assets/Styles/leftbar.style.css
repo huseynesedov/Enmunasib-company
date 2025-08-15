@@ -1,0 +1,126 @@
+.thon_leftbar {
+    max-width: 200px;
+    padding: 0 20px;
+    background-color: var(--leftbar-main-bg-color);
+    color: var(--leftbar-main-text-icon-color);
+    transition: 0.2s;
+
+}
+
+.Company_Logo {
+    width: 150px;
+    padding: 5px 10px;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25); /* Hafif gölge */
+    background-color: #fff; /* Logo kontrastını artırır */
+}
+
+
+.borderrrrr{
+    position: relative;
+}
+
+.border23 {
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 100%;
+    z-index: 1999;
+    height: 2px;
+    background-color: #fff;
+    transition: width 0.3s ease;
+}
+
+
+.Company_Logo:hover {
+    transform: scale(1.05);
+    transition: transform 0.3s ease;
+}
+
+
+.thon_leftbar_icon {
+    position: relative; /* Tooltip üçün lazımdır */
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.thon_leftbar_icon svg {
+    width: 24px;
+    height: 24px;
+}
+
+
+.active {
+    padding: 5px 2px;
+    border-radius: 6px;
+    color: var(--leftbar-active-text-icon-color) !important;
+    background-color: var(--leftbar-active-bg-color);
+    transition: 0.9s;
+}
+
+
+.thon_leftbar_icon:hover p {
+    opacity: 1;
+    visibility: visible;
+}
+
+
+
+/* Tooltip (standart olaraq gizlidir) */
+.tooltip {
+    position: absolute;
+    left: calc(100% + 10px);
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: var(--leftbar-mobil-hover-bg-color);
+    color: var(--leftbar-mobil-hover-text-color);
+    padding: 6px 12px;
+    border-radius: 6px;
+    white-space: nowrap;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+    font-size: 14px;
+    font-weight: 500;
+    transition: 0.2s;
+
+}
+
+.tooltip::before{
+    content: "";
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    border-radius: 3px;
+    background-color: var(--leftbar-mobil-hover-bg-color);
+    top: 50%;
+    left: -5%;
+    transform: translateY(-50%) rotate(45deg);
+    
+}
+
+@media (max-width: 768px) {
+
+    .thon_leftbar_icon p,.right {
+        display: none;
+        
+    }
+
+    .Company_Logo {
+        display: none;
+    }
+
+    /* Tooltip mobilde görünsün */
+    .thon_leftbar_icon:hover .tooltip {
+        opacity: 1;
+        visibility: visible;
+    }
+}
+
+/* Tooltip desktopda tamamilə gizlənməlidir */
+@media (min-width: 769px) {
+    .tooltip {
+        display: none !important;
+    }
+}

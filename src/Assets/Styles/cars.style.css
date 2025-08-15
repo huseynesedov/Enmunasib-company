@@ -1,0 +1,154 @@
+/* Genel Dropdown stil */
+.dropdown-container {
+    min-width: 101px;
+    margin: 20px auto;
+    position: relative;
+    font-family: Arial, sans-serif;
+}
+
+.dropdown {
+    position: relative;
+    background-color: transparent;
+    border: 1px solid gray;
+    padding: 4px 5px;
+    cursor: pointer;
+    border-radius: 8px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.dropdown-selected {
+    padding: 5px;
+    color: #333;
+}
+
+.dropdown-options {
+    display: none;
+    position: absolute;
+    top: 40px;
+    left: 0;
+    right: 0;
+    background-color: #fff;
+    border-radius: 4px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+    z-index: 10;
+}
+
+.dropdown-options::before {
+    content: '';
+    width: 15px;
+    height: 15px;
+    right: 81px;
+    top: 6px;
+    transform: translateY(-76%) rotate(45deg);
+    background-color: white;
+    z-index: -1;
+    display: flex;
+    position: absolute;
+}
+
+
+.dropdown-options.open {
+    display: block;
+}
+
+.dropdown-option {
+    padding: 10px;
+    cursor: pointer;
+    color: #333;
+    background-color: #fff;
+}
+
+.dropdown-option:hover {
+    background-color: #f1f1f1;
+}
+
+
+.thon_tableButtonTransparentYellow {
+    padding: 5px 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 8px;
+    border: 1px solid var(--main-Yellow-color);
+    color: var(--main-Yellow-color);
+
+}
+
+
+
+.empty {
+    max-width: 70px;
+    width: 100%;
+    padding: 8px;
+    border-radius: 35px;
+    display: flex;
+    align-items: center;
+    background-color: var(--cars-status-container-bg-colorGreen);
+    color: var(--cars-status-container-text-colorGreen);
+
+    .empty-border {
+        width: 15px;
+        height: 15px;
+        border-radius: 50%;
+        background-color: var(--cars-status-container-text-colorGreen);
+        margin-right: 10px;
+    }
+}
+
+.busy {
+    max-width: 87px;
+    width: 100%;
+    padding: 8px;
+    border-radius: 35px;
+    display: flex;
+    align-items: center;
+    background-color: var(--cars-status-container-bg-colorRed);
+    color: var(--cars-status-container-text-colorRed);
+
+    .busy-border {
+        width: 15px;
+        height: 15px;
+        border-radius: 50%;
+        background-color: var(--cars-status-container-text-colorRed);
+        margin-right: 10px;
+    }
+}
+
+.repair {
+    max-width: 100px;
+    width: 100%;
+    padding: 8px;
+    border-radius: 35px;
+    display: flex;
+    align-items: center;
+    background-color: var(--cars-status-container-bg-colorGray);
+    color: var(--cars-status-container-text-colorGray);
+
+    .repair-border {
+        width: 15px;
+        height: 15px;
+        border-radius: 50%;
+        background-color: var(--cars-status-container-text-colorGray);
+        margin-right: 10px;
+    }
+}
+
+.rezerv {
+    max-width: 100px;
+    width: 100%;
+    padding: 8px;
+    border-radius: 35px;
+    display: flex;
+    align-items: center;
+    background-color: var(--cars-status-container-bg-colorPurple);
+    color: var(--cars-status-container-text-colorPurple);
+
+    .rezerv-border {
+        width: 15px;
+        height: 15px;
+        border-radius: 50%;
+        background-color: var(--cars-status-container-text-colorPurple);
+        margin-right: 10px;
+    }
+}

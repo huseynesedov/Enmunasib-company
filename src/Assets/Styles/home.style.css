@@ -1,0 +1,230 @@
+.thon_home_oneMain {
+    border-radius: 20px;
+    background-color: var(--home-reports-bg-color);
+}
+
+/* Report */
+.thon_home_reportContainer {
+    padding: 10px 30px;
+    margin-right: 40px;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--white);
+}
+
+.thon_home_datepickersMain {
+    flex-wrap: wrap;
+}
+
+.thon_home_datepickers {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+}
+
+
+
+
+.thon_home_reports {
+    flex-wrap: wrap;
+    align-items: baseline;
+    justify-content: flex-start;
+    gap: 20px 0px;
+
+}
+
+.text_red {
+    color: var(--home-reports-containerMain-text-colorRed);
+}
+
+.text_yellow {
+    color: var(--home-reports-containerMain-text-colorYellow);
+}
+
+
+.text_green {
+    color: var(--home-reports-containerMain-text-colorGreen);
+}
+
+.text_blue {
+    color: var(--home-status-containerMain-text-colorBlue);
+}
+
+.text_gray {
+    color: var(--home-status-containerMain-text-colorGray);
+}
+
+.date-picker-input {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 16px;
+    background-color: #ffffff;
+    transition: all 0.3s ease;
+    color: #333;
+}
+
+
+.date-picker-input:focus {
+    outline: none;
+    border-color: #4caf50;
+    box-shadow: 0 0 5px rgba(76, 175, 80, 0.6);
+    background-color: #fff;
+}
+
+
+
+@media (max-width: 768px) {
+    .thon_home_reportContainer {
+        width: 100%;
+        margin-right: 0px !important;
+    }
+
+    .thon_home_datepickers {
+        max-width: 200px;
+        width: 100%;
+    }
+}
+
+
+/* Status */
+
+.thon_status_main {
+    flex-wrap: wrap;
+    gap: 20px 0px;
+
+}
+
+.thon_status_container {
+    padding: 10px 14px;
+    margin-right: 40px;
+    border-radius: 15px;
+    background-color: var(--white);
+
+}
+
+.status_button {
+    padding: 5px 5px;
+    font-size: 12px;
+    border-radius: 8px;
+    border: 1px solid rgba(0, 0, 0, 0.07);
+}
+
+@media (max-width: 768px) {
+    .thon_status_container {
+        margin-right: 0px !important;
+        width: 100%;
+
+    }
+
+    .buttonGap {
+        gap: 30px 0;
+    }
+}
+
+
+
+/* Tabs */
+
+/* Küçük ekranlarda sekmelerin yatay kaydırılmasını sağlar */
+
+.ant-tabs-nav-wrap {
+    width: 1px !important;
+}
+
+/* WebKit tarayıcıları için özel kaydırma çubuğu */
+.tab-wrapper .ant-tabs-nav::-webkit-scrollbar {
+    height: 4px;
+}
+
+.tab-wrapper .ant-tabs-nav::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 2px;
+}
+
+
+.thon_tableButtonDarkBlue {
+    padding: 5px 15px;
+    display: flex;
+    align-items: center;
+    border-radius: 8px;
+    justify-content: center;
+    background-color: var(--main-darkblue-color);
+    color: var(--white);
+}
+
+.thon_tableButtonTransparent {
+    padding: 5px 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 8px;
+    border: 1px solid var(--main-darkblue-color);
+    color: var(--main-darkblue-color);
+}
+
+
+.thon_tableButtonTransparentGreen {
+    padding: 5px 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 8px;
+    border: 1px solid var(--home-reports-containerMain-text-colorGreen);
+    color: var(--home-reports-containerMain-text-colorGreen);
+}
+
+
+@media (max-width: 768px) {
+    .thon_tableButtonDarkBlue {
+        padding: 5px 10px;
+        font-size: 12px;
+
+        svg {
+            font-size: 20px !important;
+        }
+    }
+
+    .thon_tableButtonTransparent {
+        padding: 5px 10px;
+        font-size: 12px;
+
+        svg {
+            font-size: 20px !important;
+        }
+    }
+}
+
+
+.thon_TableButton {
+    padding: 7.5px 20px;
+    border: 1px solid;
+    border-radius: 10px;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+}
+
+.thon_new {
+    color: var(--main-blue-color);
+}
+
+.thon_print {
+    color: var(--main-orange-color);
+}
+
+
+/* Active cars */
+
+.thon_activeCar {
+    width: 70px;
+    height: 50px;
+
+    img {
+        width: 100%;
+    }
+}

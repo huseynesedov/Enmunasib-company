@@ -1,0 +1,140 @@
+.ant-modal-content{
+    background-color: #f7f7f7 !important;
+}
+.ant-modal-header{
+    background-color: transparent !important;
+}
+
+.thon_modal-input {
+    padding: 8px;
+    border: none;
+    background-color: var(--input-bg-color);
+}
+
+.custom-input::placeholder {
+    color: #4444 !important;
+}
+
+.custom-select-dropdown .ant-select-selection-placeholder {
+    color: black !important;
+}
+.custom-input {
+    /* background-color: var(--input-bg-color); */
+    color: black !important;
+}
+
+:where(.css-dev-only-do-not-override-1a3rktk).ant-select-outlined:not(.ant-select-customize-input) .ant-select-selector {
+    /* background: var(--input-bg-color); */
+    color: black !important;
+}
+
+:where(.css-dev-only-do-not-override-1a3rktk).ant-select-dropdown{
+    background-color: var(--input-bg-color) !important;
+}
+
+
+.ant-input{
+    padding: 8px 5px;
+}
+
+
+
+/* <div className={`modal-input-container ${isFocused || value ? "active" : ""}`}>
+<label className="floating-label">Adınızı girin</label>
+<input
+    type="text"
+    className="w-100 thon_modal-input"
+    style={{ maxWidth: "339px" }}
+    onFocus={() => setIsFocused(true)}
+    onBlur={() => setIsFocused(false)}
+    onChange={(e) => setValue(e.target.value)}
+    value={value}
+/>
+</div> */
+
+.floating-label .ant-form-item-label {
+    position: absolute;
+    top: -8px;
+    left: 12px;
+    background: white;
+    padding: 0 4px;
+    font-size: 12px;
+    color: #555;
+    transition: all 0.3s;
+}
+.floating-label .ant-input:placeholder-shown + .ant-form-item-label {
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 14px;
+    color: #aaa;
+}
+
+.ant-notification {
+    z-index: 9999 !important;
+}
+
+
+.modal-content {
+    max-height: 383px;
+    gap: 20px 0;
+    padding: 0 20px 0 0;
+    overflow-y: auto;
+}
+
+.active-modal{
+    padding: 5px 2px;
+    border-radius: 6px;
+    color: var(--leftbar-active-text-icon-color) !important;
+    background-color: var(--leftbar-active-bg-color);
+    transition: 0.9s;
+    
+}
+
+
+.modal-input-container {
+    max-width: 340px;
+    width: 100%;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+}
+
+@media (max-width: 780px) {
+    .modal-input-container {
+        width: 100%;
+        position: relative;
+        display: flex;
+        flex-direction: column;
+    }
+
+}
+
+
+.floating-label {
+    position: absolute;
+    left: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    transition: all 0.3s ease;
+    font-size: 16px;
+    color: #000000;
+    pointer-events: none;
+}
+
+.modal-input-container input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 12px;
+    font-size: 16px;
+    outline: none;
+    transition: all 0.3s ease;
+}
+
+
+.modal-input-container.active .floating-label {
+    top: 5px;
+    font-size: 12px;
+
+    color: black;
+}

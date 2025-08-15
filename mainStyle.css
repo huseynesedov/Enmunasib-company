@@ -1,0 +1,655 @@
+@import url('https://fonts.googleapis.com/css2?family=Work+Sans:ital,wght@0,100..900;1,100..900&display=swap');
+
+
+body {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    background-color: var(--main-bodybg-color) !important;
+}
+
+.hrrr hr{
+    margin: 0.5rem 0 !important   ;
+}
+hr {
+    margin: 0 0 !important;
+}
+
+
+
+
+
+
+
+/* Normal görünüm */
+.custom-dropdown {
+  left: 0 !important;
+}
+
+/* Mobilde sağdan sola açılma */
+@media (max-width: 768px) {
+  .custom-dropdown {
+    right: 0 !important;
+    left: auto !important;
+    transform-origin: top right !important;
+  }
+}
+/* Modal'ı aşağıdan yuxarıya açmaq üçün */
+.filter-bottom-modal .ant-modal {
+  top: auto;
+  bottom: 0;
+  margin: 0;
+  width: 100% !important;
+  max-width: 100%;
+  border-radius: 12px 12px 0 0;
+  animation: slideUp 0.3s ease;
+}
+
+/* Arka plan overlay'e tıklanabilir olması */
+.filter-bottom-modal .ant-modal-content {
+  border-radius: 12px 12px 0 0;
+}
+
+/* Aşağıdan yuxarıya animasiya */
+@keyframes slideUp {
+  from {
+    transform: translateY(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+
+html,
+body {
+    height: auto !important;
+}
+
+#root {
+    font-family: "Work Sans", serif;
+    background-color: var(--mainbg-color);
+}
+
+.main {
+    width: 100%;
+    min-height: 100vh;
+    height: 100%;
+}
+
+.ant-btn-icon-only {
+    z-index: -2;
+}
+
+a {
+    color: inherit !important;
+    text-decoration: none !important;
+}
+
+ul,
+li {
+    text-decoration: none;
+    list-style: none;
+}
+
+button {
+    background-color: transparent;
+    border: transparent;
+}
+
+.thon_add_button {
+    padding: 10px 20px;
+    color: white;
+    min-width: 130px;
+
+    border-radius: 35px;
+    background-color: var(--main-darkblue-color);
+}
+
+/* Light mode */
+:root {
+    --white: #FFFFFF;
+    --black: #444444;
+    --main-bodybg-color: #F5F5F5;
+    --main-darkblue-color: #263651;
+    --main-blue-color: #0162DD;
+    --main-orange-color: #BF6A02;
+    --main-Red-color: #FA4913;
+    --main-Green-color: #00AC4F;
+    --main-Yellow-color: #F8CE00;
+
+    /* Leftbar */
+    --leftbar-main-bg-color: #263651;
+    --leftbar-main-text-icon-color: #FFFFFF;
+
+    --leftbar-active-text-icon-color: #263651;
+    --leftbar-active-bg-color: #FFFFFF;
+
+    --leftbar-mobil-hover-bg-color: #000000c7;
+    --leftbar-mobil-hover-text-color: #FFFFFF;
+
+    /* Home */
+    --home-reports-bg-color: rgba(228, 228, 228, 0.66);
+    --home-reports-containerMain-text-colorRed: #FA4913;
+    --home-reports-containerMain-text-colorYellow: #F8CE00;
+    --home-reports-containerMain-text-colorGreen: #00AC4F;
+
+    --home-status-containerMain-text-colorBlue: #0162DD;
+    --home-status-containerMain-text-colorGray: rgba(0, 0, 0, 0.53);
+
+    /* Cars */
+    --cars-status-container-bg-colorGreen: #CAEAD4;
+    --cars-status-container-text-colorGreen: #1CC052;
+
+    --cars-status-container-bg-colorRed: #F6D4CE;
+    --cars-status-container-text-colorRed: #FC5230;
+
+    --cars-status-container-bg-colorGray: #E0DFDE;
+    --cars-status-container-text-colorGray: #8A8784;
+
+    --cars-status-container-bg-colorPurple: #EAD0F5;
+    --cars-status-container-text-colorPurple: #C044F2;
+    /* Rezerv */
+    --rezerv-status-container-bg-colorBlue: rgba(28, 156, 192, 0.35);
+    --rezerv-status-container-text-colorBlue: #1C9CC0;
+
+    --rezerv-status-container-bg-colorRed: rgba(252, 48, 48, 0.3);
+    --rezerv-status-container-text-colorRed: #FF0000;
+
+    /* Modals */
+    --input-bg-color:#e5e5ea;
+}
+
+/* Dark mode */
+body.dark-mode {
+    --leftbar-main-bg-color: #263651;
+    --leftbar-main-text-icon-color: #FFFFFF;
+
+}
+
+.cursor-pointer {
+    cursor: pointer;
+}
+
+
+
+section {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.row {
+    margin-left: 10px !important;
+    margin-right: 10px !important;
+}
+
+p {
+    margin-top: 0;
+    margin-bottom: 0rem !important;
+}
+
+
+
+/* Table */
+
+.table-responsive-wrapper {
+    width: 100%;
+}
+
+@media (max-width: 768px) {
+    .ant-table-container {
+        max-width: 500px;
+        overflow-x: scroll;
+    }
+
+    .ant-table-cell {
+        padding: 8px !important;
+        font-size: 12px;
+    }
+
+
+    .mobile-text {
+        font-size: 12px;
+    }
+
+    .mobile-icon {
+        font-size: 18px !important;
+    }
+}
+
+@media (max-width: 850px) {
+
+    .ant-table-container {
+        max-width: 600px;
+        overflow-x: scroll;
+    }
+
+}
+
+@media (max-width: 840px) {
+
+    .ant-table-container {
+        max-width: 597px;
+        overflow-x: scroll;
+    }
+
+}
+
+@media (max-width: 830px) {
+
+    .ant-table-container {
+        max-width: 583px;
+        overflow-x: scroll;
+    }
+
+}
+
+@media (max-width: 813px) {
+
+    .ant-table-container {
+        max-width: 570px;
+        overflow-x: scroll;
+    }
+
+}
+
+@media (max-width: 809px) {
+
+    .ant-table-container {
+        max-width: 567px;
+        overflow-x: scroll;
+    }
+
+}
+
+@media (max-width: 780px) {
+
+    .ant-table-container {
+        max-width: 536px;
+        overflow-x: scroll;
+    }
+
+}
+
+@media (max-width: 668px) {
+
+    .ant-table-container {
+        max-width: 570px;
+        overflow-x: scroll;
+    }
+
+}
+
+@media (max-width: 568px) {
+
+    .ant-table-container {
+        max-width: 370px;
+        overflow-x: scroll;
+    }
+
+}
+
+@media (max-width: 485px) {
+
+    .ant-table-container {
+        max-width: 360px;
+        overflow-x: scroll;
+    }
+
+}
+
+
+@media (max-width: 468px) {
+
+    .ant-table-container {
+        max-width: 310px;
+        overflow-x: scroll;
+    }
+
+}
+
+@media (max-width: 426px) {
+
+    .ant-table-container {
+        max-width: 300px;
+        overflow-x: scroll;
+    }
+
+}
+
+@media (max-width: 416px) {
+
+    .ant-table-container {
+        max-width: 296px;
+        overflow-x: scroll;
+    }
+
+}
+
+
+@media (max-width: 412px) {
+
+    .ant-table-container {
+        max-width: 295px;
+        overflow-x: scroll;
+    }
+
+}
+
+@media (max-width: 406px) {
+
+    .ant-table-container {
+        max-width: 284px;
+        overflow-x: scroll;
+    }
+
+}
+
+@media (max-width: 396px) {
+
+    .ant-table-container {
+        max-width: 276px;
+        overflow-x: scroll;
+    }
+
+}
+
+@media (max-width: 386px) {
+
+    .ant-table-container {
+        max-width: 240px;
+        overflow-x: scroll;
+    }
+
+}
+
+
+@media (max-width: 376px) {
+
+    .ant-table-container {
+        max-width: 254px;
+        overflow-x: scroll;
+    }
+
+}
+
+@media (max-width: 370px) {
+
+    .ant-table-container {
+        max-width: 248px;
+        overflow-x: scroll;
+    }
+
+}
+
+@media (max-width: 346px) {
+
+    .ant-table-container {
+        max-width: 248px;
+        overflow-x: scroll;
+    }
+
+}
+
+@media (max-width: 286px) {
+
+    .ant-table-container {
+        max-width: 210px;
+        overflow-x: scroll;
+    }
+
+}
+
+
+.ant-table-container {
+    overflow-x: auto;
+}
+
+
+
+
+
+
+
+.fs-1 {
+    font-size: 1px;
+}
+
+.fs-2 {
+    font-size: 2px;
+}
+
+.fs-3 {
+    font-size: 3px;
+}
+
+.fs-4 {
+    font-size: 4px;
+}
+
+.fs-5 {
+    font-size: 5px;
+}
+
+.fs-6 {
+    font-size: 6px;
+}
+
+.fs-7 {
+    font-size: 7px;
+}
+
+.fs-8 {
+    font-size: 8px;
+}
+
+.fs-9 {
+    font-size: 9px;
+}
+
+.fs-10 {
+    font-size: 10px;
+}
+
+.fs-11 {
+    font-size: 11px;
+}
+
+.fs-12 {
+    font-size: 12px;
+}
+
+.fs-13 {
+    font-size: 13px;
+}
+
+.fs-14 {
+    font-size: 14px;
+}
+
+.fs-15 {
+    font-size: 15px;
+}
+
+.fs-16 {
+    font-size: 16px;
+}
+
+.fs-17 {
+    font-size: 17px;
+}
+
+.fs-18 {
+    font-size: 18px;
+}
+
+.fs-19 {
+    font-size: 19px;
+}
+
+.fs-20 {
+    font-size: 20px;
+}
+
+.fs-21 {
+    font-size: 21px;
+}
+
+.fs-22 {
+    font-size: 22px;
+}
+
+.fs-23 {
+    font-size: 23px;
+}
+
+.fs-24 {
+    font-size: 24px;
+}
+
+.fs-25 {
+    font-size: 25px;
+}
+
+.fs-26 {
+    font-size: 26px;
+}
+
+.fs-27 {
+    font-size: 27px;
+}
+
+.fs-28 {
+    font-size: 28px;
+}
+
+.fs-29 {
+    font-size: 29px;
+}
+
+.fs-30 {
+    font-size: 30px;
+}
+
+.fs-31 {
+    font-size: 31px;
+}
+
+.fs-32 {
+    font-size: 32px;
+}
+
+.fs-33 {
+    font-size: 33px;
+}
+
+.fs-34 {
+    font-size: 34px;
+}
+
+.fs-35 {
+    font-size: 35px;
+}
+
+.fs-36 {
+    font-size: 36px;
+}
+
+.fs-37 {
+    font-size: 37px;
+}
+
+.fs-38 {
+    font-size: 38px;
+}
+
+.fs-39 {
+    font-size: 39px;
+}
+
+.fs-40 {
+    font-size: 40px;
+}
+
+.fs-41 {
+    font-size: 41px;
+}
+
+.fs-42 {
+    font-size: 42px;
+}
+
+.fs-43 {
+    font-size: 43px;
+}
+
+.fs-44 {
+    font-size: 44px;
+}
+
+.fs-45 {
+    font-size: 45px;
+}
+
+.fs-46 {
+    font-size: 46px;
+}
+
+.fs-47 {
+    font-size: 47px;
+}
+
+.fs-48 {
+    font-size: 48px;
+}
+
+.fs-49 {
+    font-size: 49px;
+}
+
+.fs-50 {
+    font-size: 50px;
+}
+
+.fs-60 {
+    font-size: 60px;
+}
+
+.fw-100 {
+    font-weight: 100;
+}
+
+.fw-200 {
+    font-weight: 200;
+}
+
+.fw-300 {
+    font-weight: 300;
+}
+
+.fw-400 {
+    font-weight: 400;
+}
+
+.fw-500 {
+    font-weight: 500;
+}
+
+.fw-600 {
+    font-weight: 600;
+}
+
+.fw-700 {
+    font-weight: 700;
+}
+
+.fw-800 {
+    font-weight: 800;
+}
+
+.fw-900 {
+    font-weight: 900;
+}

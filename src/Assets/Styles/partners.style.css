@@ -1,0 +1,55 @@
+.input-container {
+    max-width: 200px;
+    position: relative;
+}
+
+.input-container label {
+    position: absolute;
+    left: 10px;
+    top: 68%;
+    transform: translateY(-76%);
+    background-color: #F5F5F5;
+    transition: all 0.3s ease-in-out;
+    color: rgb(0, 0, 0);
+}
+
+.input-container.focused label,
+.input-container input:not(:placeholder-shown) + label {
+    top: 5px;
+    font-size: 12px;
+    color: blue;
+}
+
+.input-container input {
+    width: 100%;
+    padding: 9px 5px;
+    border: 1px solid gray;
+    background-color: transparent;
+    border-radius: 8px;
+    outline: none;
+    font-size: 16px;
+}
+
+
+.thon_tableButtonTransparentRed{
+    padding: 5px 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 8px;
+    border: 1px solid var(--main-Red-color);
+    color: var(--main-Red-color);
+}
+
+
+.thon_tableButtonGray{
+    padding: 5px 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 8px;
+    border: 1px solid var(--home-status-containerMain-text-colorGray);
+    color: var(--home-status-containerMain-text-colorGray);
+}
+
+
