@@ -32,7 +32,7 @@ const AppContent = () => {
     return <Login />;
   }
 
-  // Eğer userId varsa, normal uygulama görünümünü göster
+  // Eğer userId varsa, normal uygulama görünümünü göste
   return (
     <div className="main d-flex">
       <div className=" thon_leftbar">
