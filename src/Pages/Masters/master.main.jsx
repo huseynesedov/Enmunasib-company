@@ -1,52 +1,42 @@
-import React from 'react'
+import React from 'react';
 import { IoIosAddCircle } from "react-icons/io";
 import { Content } from 'antd/es/layout/layout';
-import WorkersList from './components/worker.list';
-import AddWorkerModal from '../../Modals/workers/addWorker.modal';
+import MastersList from './components/master.list';
+import AddMasterModal from '../../Modals/Masters/master.add';
 
-
-
-const Workers = () => {
-
-    const [isWorkerModal, setIsWorkerModal] = React.useState(false);
-
-
+const Masters = () => {
+    const [isMasterModal, setIsMasterModal] = React.useState(false);
 
     return (
         <>
             <div className='d-flex w-100 flex-wrap justify-content-between'>
                 <div>
-                    <h2>İşcilər</h2>
+                    <h2>Ustalar</h2>
                 </div>
 
-
                 <div className='d-flex flex-wrap' style={{ gap: "9px 0px" }}>
-                    <button className='thon_add_button me-2'
-                        onClick={() => setIsWorkerModal(true)}
+                    <button 
+                        className='thon_add_button me-2'
+                        onClick={() => setIsMasterModal(true)}
                     >
                         Əlavə et
                         <IoIosAddCircle className='fs-24 ms-2' />
                     </button>
                 </div>
-
-
-
-
             </div>
+
             <div className="d-flex">
                 <Content>
-                    <WorkersList />
+                    <MastersList />
                 </Content>
             </div>
 
-            {/* Add Service Modal can be added here */}
-            <AddWorkerModal
-                open={isWorkerModal}
-                onCancel={() => setIsWorkerModal(false)}
+            <AddMasterModal
+                open={isMasterModal}
+                onCancel={() => setIsMasterModal(false)}
             />
-
         </>
     )
 }
 
-export default Workers;
+export default Masters;

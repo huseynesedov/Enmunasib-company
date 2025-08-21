@@ -8,9 +8,10 @@ body {
     background-color: var(--main-bodybg-color) !important;
 }
 
-.hrrr hr{
-    margin: 0.5rem 0 !important   ;
+.hrrr hr {
+    margin: 0.5rem 0 !important;
 }
+
 hr {
     margin: 0 0 !important;
 }
@@ -23,43 +24,45 @@ hr {
 
 /* Normal görünüm */
 .custom-dropdown {
-  left: 0 !important;
+    left: 0 !important;
 }
 
 /* Mobilde sağdan sola açılma */
 @media (max-width: 768px) {
-  .custom-dropdown {
-    right: 0 !important;
-    left: auto !important;
-    transform-origin: top right !important;
-  }
+    .custom-dropdown {
+        right: 0 !important;
+        left: auto !important;
+        transform-origin: top right !important;
+    }
 }
+
 /* Modal'ı aşağıdan yuxarıya açmaq üçün */
 .filter-bottom-modal .ant-modal {
-  top: auto;
-  bottom: 0;
-  margin: 0;
-  width: 100% !important;
-  max-width: 100%;
-  border-radius: 12px 12px 0 0;
-  animation: slideUp 0.3s ease;
+    top: auto;
+    bottom: 0;
+    margin: 0;
+    width: 100% !important;
+    max-width: 100%;
+    border-radius: 12px 12px 0 0;
+    animation: slideUp 0.3s ease;
 }
 
 /* Arka plan overlay'e tıklanabilir olması */
 .filter-bottom-modal .ant-modal-content {
-  border-radius: 12px 12px 0 0;
+    border-radius: 12px 12px 0 0;
 }
 
 /* Aşağıdan yuxarıya animasiya */
 @keyframes slideUp {
-  from {
-    transform: translateY(100%);
-    opacity: 0;
-  }
-  to {
-    transform: translateY(0);
-    opacity: 1;
-  }
+    from {
+        transform: translateY(100%);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
 }
 
 
@@ -159,7 +162,7 @@ button {
     --rezerv-status-container-text-colorRed: #FF0000;
 
     /* Modals */
-    --input-bg-color:#e5e5ea;
+    --input-bg-color: #e5e5ea;
 }
 
 /* Dark mode */
@@ -221,13 +224,13 @@ p {
 }
 
 @media (max-width: 850px) {
-
     .ant-table-container {
-        max-width: 600px;
-        overflow-x: scroll;
+        /* 600px genişlikten başlayıp ekran küçüldükçe orantılı azalır */
+        max-width: calc((600px - 300px) * (100vw / 850));
+        overflow-x: auto;
     }
-
 }
+
 
 @media (max-width: 840px) {
 

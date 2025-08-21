@@ -11,12 +11,14 @@
     width: 150px;
     padding: 5px 10px;
     border-radius: 8px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25); /* Hafif gölge */
-    background-color: #fff; /* Logo kontrastını artırır */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25);
+    /* Hafif gölge */
+    background-color: #fff;
+    /* Logo kontrastını artırır */
 }
 
 
-.borderrrrr{
+.borderrrrr {
     position: relative;
 }
 
@@ -39,7 +41,8 @@
 
 
 .thon_leftbar_icon {
-    position: relative; /* Tooltip üçün lazımdır */
+    position: relative;
+    /* Tooltip üçün lazımdır */
     display: flex;
     align-items: center;
     gap: 10px;
@@ -87,7 +90,7 @@
 
 }
 
-.tooltip::before{
+.tooltip::before {
     content: "";
     position: absolute;
     width: 10px;
@@ -97,14 +100,15 @@
     top: 50%;
     left: -5%;
     transform: translateY(-50%) rotate(45deg);
-    
+
 }
 
 @media (max-width: 768px) {
 
-    .thon_leftbar_icon p,.right {
+    .thon_leftbar_icon p,
+    .right {
         display: none;
-        
+
     }
 
     .Company_Logo {
@@ -123,4 +127,41 @@
     .tooltip {
         display: none !important;
     }
+}
+
+.mobile-header {
+  display: none;
+  position: sticky;
+  top: 0;
+  background: var(--leftbar-main-bg-color);
+  padding: 10px;
+  z-index: 1000;
+}
+
+.hamburger-btn {
+  background: none;
+  border: none;
+  color: var(--leftbar-main-text-icon-color);
+}
+
+.leftbar-container {
+  background-color: var(--leftbar-main-bg-color);
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 200px;
+  z-index: 999;
+}
+
+@media (max-width: 768px) {
+  .mobile-header {
+    display: block;
+  }
+  .leftbar-container {
+    transform: translateX(-250px);
+  }
+  .leftbar-container.open {
+    transform: translateX(0);
+  }
 }

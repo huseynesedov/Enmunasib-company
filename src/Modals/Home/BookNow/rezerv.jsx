@@ -1,213 +1,376 @@
 import React, { useState } from "react";
-import { Modal, Select, Button, Input, DatePicker, Badge } from "antd";
+import {
+  Modal,
+  Select,
+  Button,
+  Input,
+  DatePicker,
+  Badge,
+  Steps,
+  Form,
+  Space,
+  message,
+  Divider,
+} from "antd";
 import { CloseOutlined } from "@ant-design/icons";
 
 const { Option } = Select;
 const { RangePicker } = DatePicker;
+const { Step } = Steps;
 
 const AddRezerv = ({ isOpen, onClose }) => {
-    const [selectedCar, setSelectedCar] = useState('');
-    const [selectedOilCategory, setSelectedOilCategory] = useState('');
-    const [selectedMaster, setSelectedMaster] = useState('');
-    const [selectedCarService, setSelectedCarService] = useState('');
-    const [selectedPaymentType, setSelectedPaymentType] = useState('');
+  const [form] = Form.useForm();
+  const [current, setCurrent] = useState(0);
 
-    const [oilFirmName, setOilFirmName] = useState('');
-    const [oilType, setOilType] = useState('');
-    const [currentKm, setCurrentKm] = useState('');
-    const [warrantyKm, setWarrantyKm] = useState('');
-    const [totalPrice, setTotalPrice] = useState('');
-    const [totalDept, setTotalDept] = useState('');
-    const [paymentType, setPaymentType] = useState(true);
-    const [loading, setLoading] = useState(false);
+  // Hər step üçün validasiya olunacaq sahələr
+  const stepFields = [
+    ["selectedCar"],
+    ["fullName", "phone", "birthDate"],
+    ["deposit", "price", "km", "dateRange"],
+    [
+      "idSerial",
+      "idFin",
+      "idValidDate",
+      "driverSerial",
+      "driverFin",
+      "driverGivenDate",
+      "driverValidDate",
+    ],
+  ];
 
-    const isButtonDisabled = !selectedCar || !oilFirmName || !oilType || !currentKm || !warrantyKm || !totalPrice || !selectedOilCategory || !selectedMaster || !selectedCarService || !selectedPaymentType;
+  const getFieldsForStep = (i) => stepFields[i] || [];
 
-    const handleSave = () => {
-        setLoading(true);
-        setTimeout(() => {
-            setLoading(false);
-            setSelectedCar('');
-            setSelectedOilCategory('');
-            setOilFirmName('');
-            setOilType('');
-            setCurrentKm('');
-            setWarrantyKm('');
-            setPaymentType(true);
-            onClose();
-        }, 2000);
-    };
+  const next = async () => {
+    try {
+      await form.validateFields(getFieldsForStep(current));
+      setCurrent((c) => c + 1);
+    } catch {
+      // antd form qırmızı xətaları göstərir
+    }
+  };
 
-    return (
-        <Modal
-            title="Rezerv elave et"
-            open={isOpen}
-            onCancel={onClose}
-            footer={[
-                <Button key="save" type="primary" onClick={handleSave} loading={loading} disabled={!isButtonDisabled}>
-                    Kaydet
-                </Button>
-            ]}
-            centered
-            width="90%"
-            maskClosable={false}
-            style={{ maxWidth: "777px" }}
-            closeIcon={<CloseOutlined onClick={onClose} />}
-        >
-            <div className="modal-content mt-4">
-                <div className="custom-dropdown-container hrrr d-flex flex-column justify-content-between">
+  const prev = () => setCurrent((c) => c - 1);
 
-                    {/* Maşın seçimi */}
-                    <Select
-                        value={selectedCar || undefined}
-                        showSearch
-                        style={{ width: "100%" }}
-                        placeholder="Maşın seçimi"
-                        onChange={setSelectedCar}
-                        className="custom-select-dropdown"
-                    >
-                        {[...Array(20)].map((_, index) => (
-                            <Option key={index} value={`option${index + 1}`}>Seçenek {index + 1}</Option>
-                        ))}
-                    </Select>
-                    <hr />
+  const handleSave = async () => {
+    try {
+      await form.validateFields();
+      const values = form.getFieldsValue(true);
+      console.log("Rezerv data:", values);
+      message.success("Rezervasiya uğurla əlavə olundu ✅");
+      form.resetFields();
+      setCurrent(0);
+      onClose();
+    } catch {
+      // xətalar formda görünəcək
+    }
+  };
 
-                    {/* Müştəri - İstifadəci */}
-                    <div className="d-flex flex-column gap-3">
+  return (
+    <Modal
+      title="Rezerv əlavə et"
+      open={isOpen}
+      onCancel={onClose}
+      footer={null}
+      centered
+      width="90%"
+      maskClosable={false}
+      style={{ maxWidth: 777 }}
+      closeIcon={<CloseOutlined onClick={onClose} />}
+    >
+      <Steps current={current} className="mb-4">
+        <Step title="Maşın" />
+        <Step title="Müştəri" />
+        <Step title="Müddət & Qiymət" />
+        <Step title="Sənədlər" />
+      </Steps>
 
+      <Form form={form} layout="vertical">
+        {/* STEP 0: Maşın seçimi */}
+        {current === 0 && (
+          <Space direction="vertical" style={{ width: "100%" }}>
+            <Form.Item
+              name="selectedCar"
+              label="Maşın seçimi"
+              rules={[{ required: true, message: "Zəhmət olmasa maşın seçin" }]}
+              hasFeedback
+            >
+              <Select placeholder="Maşın seçin" showSearch>
+                {[...Array(20)].map((_, i) => (
+                  <Option key={i} value={`option${i + 1}`}>
+                    Seçenek {i + 1}
+                  </Option>
+                ))}
+              </Select>
+            </Form.Item>
+          </Space>
+        )}
 
+        {/* STEP 1: Müştəri */}
+        {current === 1 && (
+          <Space direction="vertical" style={{ width: "100%" }}>
+            {/* (Tezliklə) Müştəri seçimi */}
+            <Badge.Ribbon text="Tezliklə" color="orange">
+              <div style={{ pointerEvents: "none", opacity: 0.6 }}>
+                <Form.Item label="Müştəri seçimi">
+                  <Select placeholder="Müştəri seçimi (yakında)" showSearch>
+                    {[...Array(20)].map((_, i) => (
+                      <Option key={i} value={`customer${i + 1}`}>
+                        Müştəri {i + 1}
+                      </Option>
+                    ))}
+                  </Select>
+                </Form.Item>
+              </div>
+            </Badge.Ribbon>
 
-                        <Badge.Ribbon text="Tezliklə" color="orange">
-                            <div style={{ pointerEvents: 'none', opacity: 0.6 }}>
-                                <Select
-                                    value={selectedCar || undefined}
-                                    showSearch
-                                    style={{ width: "100%" }}
-                                    placeholder="Müştəri seçimi"
-                                    onChange={setSelectedCar}
-                                    className="custom-select-dropdown"
-                                >
-                                    {[...Array(20)].map((_, index) => (
-                                        <Option key={index} value={`option${index + 1}`}>
-                                            Seçenek {index + 1}
-                                        </Option>
-                                    ))}
-                                </Select>
-                            </div>
-                        </Badge.Ribbon>
+            <Divider style={{ margin: "8px 0" }} />
 
-                        {/* İstifadəci məlumatları */}
+            <Space style={{ width: "100%" }} size="large" wrap>
+              <Form.Item
+                name="fullName"
+                label="Ad Soyad"
+                rules={[{ required: true, message: "Ad soyad daxil edin" }]}
+                hasFeedback
+              >
+                <Input placeholder="Ad soyad" style={{ width: 338 }} />
+              </Form.Item>
 
-                        <div className="d-flex justify-content-between">
-                            <Input value={currentKm} className="custom-input" onChange={(e) => setCurrentKm(e.target.value)} placeholder="Ad soyad" style={{ maxWidth: "338px" }} />
-                            <Input value={warrantyKm} className="custom-input" onChange={(e) => setWarrantyKm(e.target.value)} placeholder="Mobil nömrə" style={{ maxWidth: "338px" }} />
-                        </div>
-                        <div className="d-flex justify-content-between">
-                            <Input value={currentKm} className="custom-input" onChange={(e) => setCurrentKm(e.target.value)} placeholder="Email" style={{ maxWidth: "338px" }} />
-                            <DatePicker className="custom-input w-100" placeholder="Doğum tarixi" style={{ maxWidth: "338px" }} />
-                        </div>
+              <Form.Item
+                name="phone"
+                label="Mobil nömrə"
+                rules={[
+                  { required: true, message: "Nömrə daxil edin" },
+                  { pattern: /^[0-9+\s()-]{7,}$/, message: "Yanlış format" },
+                ]}
+                hasFeedback
+              >
+                <Input placeholder="+994..." style={{ width: 338 }} />
+              </Form.Item>
+            </Space>
 
+            <Space style={{ width: "100%" }} size="large" wrap>
+              <Form.Item
+                name="email"
+                label="Email"
+                rules={[{ type: "email", message: "Yanlış email" }]}
+                hasFeedback
+              >
+                <Input placeholder="ornek@mail.com" style={{ width: 338 }} />
+              </Form.Item>
 
-                    </div>
-                    <hr />
+              <Form.Item
+                name="birthDate"
+                label="Doğum tarixi"
+                rules={[{ required: true, message: "Tarix seçin" }]}
+                hasFeedback
+              >
+                <DatePicker
+                  placeholder="Doğum tarixi"
+                  style={{ width: 338 }}
+                  format="DD.MM.YYYY"
+                />
+              </Form.Item>
+            </Space>
+          </Space>
+        )}
 
-                    {/* Qiymət - Depozit - KM */}
+        {/* STEP 2: Qiymət / Depozit / KM / Müddət */}
+        {current === 2 && (
+          <Space direction="vertical" style={{ width: "100%" }}>
+            <Space style={{ width: "100%" }} size="large" wrap>
+              <Form.Item
+                name="deposit"
+                label="Depozit"
+                rules={[
+                  { required: true, message: "Depozit daxil edin" },
+                  { pattern: /^\d+(\.\d{1,2})?$/, message: "Yanlış məbləğ" },
+                ]}
+                hasFeedback
+              >
+                <Input placeholder="Məs: 200" style={{ width: 157 }} />
+              </Form.Item>
 
-                    <div className="d-flex justify-content-between">
+              <Form.Item
+                name="price"
+                label="Qiymət"
+                rules={[
+                  { required: true, message: "Qiymət daxil edin" },
+                  { pattern: /^\d+(\.\d{1,2})?$/, message: "Yanlış məbləğ" },
+                ]}
+                hasFeedback
+              >
+                <Input placeholder="Məs: 120" style={{ width: 157 }} />
+              </Form.Item>
 
-                        <Input value={currentKm} className="custom-input" onChange={(e) => setCurrentKm(e.target.value)} placeholder="Depozit" style={{ maxWidth: "157px" }} />
-                        <Input value={warrantyKm} className="custom-input" onChange={(e) => setWarrantyKm(e.target.value)} placeholder="Qiymet" style={{ maxWidth: "157px" }} />
-                        <Input value={warrantyKm} className="custom-input" onChange={(e) => setWarrantyKm(e.target.value)} placeholder="Hazırki km" style={{ maxWidth: "338px" }} />
+              <Form.Item
+                name="km"
+                label="Hazırki km"
+                rules={[
+                  { required: true, message: "KM daxil edin" },
+                  { pattern: /^\d+$/, message: "Yalnız rəqəm" },
+                ]}
+                hasFeedback
+              >
+                <Input placeholder="Məs: 125000" style={{ width: 338 }} />
+              </Form.Item>
+            </Space>
 
-                    </div>
-                    <hr />
+            <Form.Item
+              name="dateRange"
+              label="Rezervasiya müddəti"
+              rules={[{ required: true, message: "Müddəti seçin" }]}
+              hasFeedback
+            >
+              <RangePicker
+                placeholder={["Başlanğıc tarixi", "Bitiş tarixi"]}
+                format="DD.MM.YYYY"
+                style={{ width: "100%" }}
+              />
+            </Form.Item>
+          </Space>
+        )}
 
-                    {/* Rezervasiya tarixi */}
+        {/* STEP 3: Sənədlər + Xidmətlər */}
+        {current === 3 && (
+          <Space direction="vertical" style={{ width: "100%" }}>
+            {/* Şəxsiyyət vəsiqəsi */}
+            <div className="d-flex flex-column gap-2">
+              <p>Şəxsiyyət vəsiqəsi :</p>
+              <Space size="large" wrap>
+                <Form.Item
+                  name="idSerial"
+                  label="Seriya №"
+                  rules={[{ required: true, message: "Seriya № daxil edin" }]}
+                  hasFeedback
+                >
+                  <Input placeholder="AA 1234567" style={{ width: 157 }} />
+                </Form.Item>
 
-                    <div className="d-flex flex-column gap-2">
-                        <p>Rezervasiya müddəti :</p>
+                <Form.Item
+                  name="idFin"
+                  label="FIN kod"
+                  rules={[{ required: true, message: "FIN kod daxil edin" }]}
+                  hasFeedback
+                >
+                  <Input placeholder="7TUHY4K" style={{ width: 157 }} />
+                </Form.Item>
 
-                        <RangePicker placeholder={['Başlanğıc tarixi', 'Bitiş tarixi']} format="DD.MM.YYYY" />
-                    </div>
-                    <hr />
-
-                    {/* Xidmət */}
-
-
-                    {/* Şəxsiyyət vəsiqəsi */}
-
-                    <div className="d-flex flex-column gap-2 justify-content-between">
-                        <p>Şəxsiyyət vəsiqəsi :</p>
-                        <div className="d-flex justify-content-between">
-
-                            <Input value={currentKm} className="custom-input" onChange={(e) => setCurrentKm(e.target.value)} placeholder="Seriay №" style={{ maxWidth: "157px" }} />
-                            <Input value={warrantyKm} className="custom-input" onChange={(e) => setWarrantyKm(e.target.value)} placeholder="Fin kod" style={{ maxWidth: "157px" }} />
-                            <DatePicker className="custom-input w-100" placeholder="Etibarlıq tarixi" style={{ maxWidth: "338px" }} />
-                        </div>
-                    </div>
-                    <hr />
-
-                    {/* Sürücülük vəsiqəsi */}
-
-                    <div className="d-flex flex-column gap-2 justify-content-between">
-                        <p>Sürücülük vəsiqəsi :</p>
-                        <div className="d-flex justify-content-between">
-
-                            <Input value={currentKm} className="custom-input" onChange={(e) => setCurrentKm(e.target.value)} placeholder="Seriay №" style={{ maxWidth: "157px" }} />
-                            <Input value={warrantyKm} className="custom-input" onChange={(e) => setWarrantyKm(e.target.value)} placeholder="Fin kod" style={{ maxWidth: "157px" }} />
-                            <DatePicker className="custom-input w-100" placeholder="Verilmə tarixi" style={{ maxWidth: "157px" }} />
-                            <DatePicker className="custom-input w-100" placeholder="Etibarlıq tarixi" style={{ maxWidth: "157px" }} />
-                        </div>
-                    </div>
-                    <hr />
-                    <div className="d-flex flex-column gap-2">
-                        <p>Xidmət lazımdırsa :</p>
-
-                        <Select
-                            value={selectedCar || undefined}
-                            showSearch
-                            style={{ width: "100%" }}
-                            placeholder="Seçin"
-                            onChange={setSelectedCar}
-                            className="custom-select-dropdown"
-                        >
-                            {[...Array(20)].map((_, index) => (
-                                <Option key={index} value={`option${index + 1}`}>Seçenek {index + 1}</Option>
-                            ))}
-                        </Select>
-                    </div>
-                    <hr />
-
-                    {/* Sürücü */}
-
-                    <Badge.Ribbon text="Tezliklə" color="orange" style={{margin: "13px 0px"}}>
-                        <div style={{ pointerEvents: 'none', opacity: 0.6 }}>
-                            <div className="d-flex flex-column gap-2">
-                                <p>Sürücü lazımdırsa :</p>
-
-                                <Select
-                                    value={selectedCar || undefined}
-                                    showSearch
-                                    style={{ width: "100%" }}
-                                    placeholder="Seçin"
-                                    onChange={setSelectedCar}
-                                    className="custom-select-dropdown"
-                                >
-                                    {[...Array(20)].map((_, index) => (
-                                        <Option key={index} value={`option${index + 1}`}>
-                                            Seçenek {index + 1}
-                                        </Option>
-                                    ))}
-                                </Select>
-                            </div>
-                        </div>
-                    </Badge.Ribbon>
-
-
-                </div>
+                <Form.Item
+                  name="idValidDate"
+                  label="Etibarlıq tarixi"
+                  rules={[{ required: true, message: "Tarix seçin" }]}
+                  hasFeedback
+                >
+                  <DatePicker
+                    placeholder="Etibarlıq tarixi"
+                    style={{ width: 338 }}
+                    format="DD.MM.YYYY"
+                  />
+                </Form.Item>
+              </Space>
             </div>
-        </Modal>
-    );
+
+            {/* Sürücülük vəsiqəsi */}
+            <div className="d-flex flex-column gap-2">
+              <p>Sürücülük vəsiqəsi :</p>
+              <Space size="large" wrap>
+                <Form.Item
+                  name="driverSerial"
+                  label="Seriya №"
+                  rules={[{ required: true, message: "Seriya № daxil edin" }]}
+                  hasFeedback
+                >
+                  <Input style={{ width: 157 }} />
+                </Form.Item>
+
+                <Form.Item
+                  name="driverFin"
+                  label="FIN kod"
+                  rules={[{ required: true, message: "FIN kod daxil edin" }]}
+                  hasFeedback
+                >
+                  <Input style={{ width: 157 }} />
+                </Form.Item>
+
+                <Form.Item
+                  name="driverGivenDate"
+                  label="Verilmə tarixi"
+                  rules={[{ required: true, message: "Tarix seçin" }]}
+                  hasFeedback
+                >
+                  <DatePicker
+                    placeholder="Verilmə tarixi"
+                    style={{ width: 157 }}
+                    format="DD.MM.YYYY"
+                  />
+                </Form.Item>
+
+                <Form.Item
+                  name="driverValidDate"
+                  label="Etibarlıq tarixi"
+                  rules={[{ required: true, message: "Tarix seçin" }]}
+                  hasFeedback
+                >
+                  <DatePicker
+                    placeholder="Etibarlıq tarixi"
+                    style={{ width: 157 }}
+                    format="DD.MM.YYYY"
+                  />
+                </Form.Item>
+              </Space>
+            </div>
+
+            <Divider />
+
+            {/* Xidmət lazımdırsa */}
+            <Form.Item name="serviceNeeded" label="Xidmət lazımdırsa :">
+              <Select placeholder="Seçin" showSearch allowClear>
+                {[...Array(20)].map((_, i) => (
+                  <Option key={i} value={`service${i + 1}`}>
+                    Seçenek {i + 1}
+                  </Option>
+                ))}
+              </Select>
+            </Form.Item>
+
+            {/* Sürücü lazımdırsa (Tezliklə) */}
+            <Badge.Ribbon text="Tezliklə" color="orange" style={{ margin: "8px 0" }}>
+              <div style={{ pointerEvents: "none", opacity: 0.6 }}>
+                <Form.Item label="Sürücü lazımdırsa :">
+                  <Select placeholder="Seçin" showSearch allowClear>
+                    {[...Array(20)].map((_, i) => (
+                      <Option key={i} value={`driver${i + 1}`}>
+                        Seçenek {i + 1}
+                      </Option>
+                    ))}
+                  </Select>
+                </Form.Item>
+              </div>
+            </Badge.Ribbon>
+          </Space>
+        )}
+      </Form>
+
+      {/* Footer controls */}
+      <div style={{ marginTop: 24, textAlign: "right" }}>
+        {current > 0 && (
+          <Button onClick={prev} style={{ marginRight: 8 }}>
+            Geri
+          </Button>
+        )}
+        {current < 3 && (
+          <Button type="primary" onClick={next}>
+            Növbəti
+          </Button>
+        )}
+        {current === 3 && (
+          <Button type="primary" onClick={handleSave}>
+            Kaydet
+          </Button>
+        )}
+      </div>
+    </Modal>
+  );
 };
 
 export default AddRezerv;

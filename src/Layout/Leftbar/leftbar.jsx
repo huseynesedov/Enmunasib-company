@@ -36,8 +36,8 @@ const Leftbar = () => {
     { icon: <FaUserFriends />, text: 'Tərəfdaşlar', link: `/${lang}/${userId}/partners` },
     { icon: <MdOutlineMiscellaneousServices />, text: 'Xidmətlər', link: `/${lang}/${userId}/services` },
     { icon: <GrUserWorker />, text: 'İşcilər', link: `/${lang}/${userId}/workers` },
+    { icon: <LuUserCog />, text: 'Ustalar', link: `/${lang}/${userId}/masters` },
 
-    { icon: <LuUserCog />, text: 'Ustalar', link: `/${lang}/${userId}/ustalar` },
     { icon: <GiMechanicGarage />, text: 'Avto servis', link: `/${lang}/${userId}/ustsalar` },
     { icon: <MdOilBarrel />, text: 'Yağ dəyişmə', link: `/${lang}/${userId}/yag-deyisme` },
     { icon: <MdCarRepair />, text: 'Təmir', link: `/${lang}/${userId}/temir` },

@@ -23,34 +23,11 @@
     color: black !important;
 }
 
-:where(.css-dev-only-do-not-override-1a3rktk).ant-select-outlined:not(.ant-select-customize-input) .ant-select-selector {
-    /* background: var(--input-bg-color); */
-    color: black !important;
-}
-
-:where(.css-dev-only-do-not-override-1a3rktk).ant-select-dropdown{
-    background-color: var(--input-bg-color) !important;
-}
-
 
 .ant-input{
     padding: 8px 5px;
 }
 
-
-
-/* <div className={`modal-input-container ${isFocused || value ? "active" : ""}`}>
-<label className="floating-label">Adınızı girin</label>
-<input
-    type="text"
-    className="w-100 thon_modal-input"
-    style={{ maxWidth: "339px" }}
-    onFocus={() => setIsFocused(true)}
-    onBlur={() => setIsFocused(false)}
-    onChange={(e) => setValue(e.target.value)}
-    value={value}
-/>
-</div> */
 
 .floating-label .ant-form-item-label {
     position: absolute;

@@ -1,142 +1,240 @@
 import React, { useState } from "react";
-import { Modal, Select, Button, Input, Radio, Upload } from "antd";
+import {
+  Modal,
+  Select,
+  Button,
+  Input,
+  Radio,
+  Upload,
+  Steps,
+  Space,
+  message,
+} from "antd";
 import { CloseOutlined, InboxOutlined } from "@ant-design/icons";
 
 const { Option } = Select;
 const { Dragger } = Upload;
+const { Step } = Steps;
 
 const SendForRepair = ({ isOpen, onClose }) => {
-  const [selectedCar, setSelectedCar] = useState('');
-  const [selectedOilCategory, setSelectedOilCategory] = useState('');
-  const [selectedMaster, setSelectedMaster] = useState('');
-  const [selectedCarService, setSelectedCarService] = useState('');
-  const [selectedPaymentType, setSelectedPaymentType] = useState('');
+  const [current, setCurrent] = useState(0);
 
-  const [oilFirmName, setOilFirmName] = useState('');
-  const [oilType, setOilType] = useState('');
-  const [currentKm, setCurrentKm] = useState('');
-  const [warrantyKm, setWarrantyKm] = useState('');
-  const [totalPrice, setTotalPrice] = useState('');
-  const [totalDept, setTotalDept] = useState('');
+  const [selectedCar, setSelectedCar] = useState("");
+  const [selectedMaster, setSelectedMaster] = useState("");
+  const [selectedCarService, setSelectedCarService] = useState("");
+  const [selectedPaymentType, setSelectedPaymentType] = useState("");
+
+  const [totalPrice, setTotalPrice] = useState("");
+  const [totalDept, setTotalDept] = useState("");
   const [paymentType, setPaymentType] = useState(true);
+  const [oilDetails, setOilDetails] = useState([{ name: "", price: "" }]);
+
   const [loading, setLoading] = useState(false);
-  const [oilDetails, setOilDetails] = useState([{ name: '', price: '' }]);
-
-  const isButtonDisabled = !selectedCar || !oilFirmName || !oilType || !currentKm || !warrantyKm || !totalPrice || !selectedOilCategory || !selectedMaster || !selectedCarService || !selectedPaymentType;
-
-  const handleSave = () => {
-    setLoading(true);
-    setTimeout(() => {
-      setLoading(false);
-      setSelectedCar('');
-      setSelectedOilCategory('');
-      setOilFirmName('');
-      setOilType('');
-      setCurrentKm('');
-      setWarrantyKm('');
-      setPaymentType(true);
-      onClose();
-    }, 2000);
-  };
 
   const handleOilDetailChange = (index, field, value) => {
     const newDetails = [...oilDetails];
     newDetails[index][field] = value;
     setOilDetails(newDetails);
   };
-  
+
+  const steps = [
+    {
+      title: "Maşın seçimi",
+      content: (
+        <Select
+          value={selectedCar || undefined}
+          showSearch
+          style={{ width: "100%" }}
+          placeholder="Maşın seçin"
+          onChange={setSelectedCar}
+        >
+          {[...Array(5)].map((_, index) => (
+            <Option key={index} value={`car${index + 1}`}>
+              Maşın {index + 1}
+            </Option>
+          ))}
+        </Select>
+      ),
+      required: !!selectedCar,
+    },
+    {
+      title: "Detallar",
+      content: (
+        <div>
+          <p>Detal adı:</p>
+          {oilDetails.map((item, index) => (
+            <div
+              key={index}
+              className="d-flex justify-content-between flex-wrap mb-2"
+            >
+              <Input
+                value={item.name}
+                style={{ maxWidth: "338px", marginBottom: 8 }}
+                onChange={(e) =>
+                  handleOilDetailChange(index, "name", e.target.value)
+                }
+                placeholder="Ad"
+              />
+              <Input
+                value={item.price}
+                style={{ maxWidth: "338px", marginBottom: 8 }}
+                onChange={(e) =>
+                  handleOilDetailChange(index, "price", e.target.value)
+                }
+                placeholder="Qiymət"
+              />
+            </div>
+          ))}
+          <Button
+            onClick={() =>
+              setOilDetails([...oilDetails, { name: "", price: "" }])
+            }
+          >
+            Əlavə et
+          </Button>
+        </div>
+      ),
+      required: oilDetails.every((d) => d.name && d.price),
+    },
+    {
+      title: "Servis",
+      content: (
+        <Space direction="vertical" style={{ width: "100%" }}>
+          <Select
+            value={selectedMaster || undefined}
+            placeholder="Usta seç"
+            onChange={setSelectedMaster}
+          >
+            {[...Array(5)].map((_, index) => (
+              <Option key={index} value={`master${index + 1}`}>
+                Usta {index + 1}
+              </Option>
+            ))}
+          </Select>
+          <Select
+            value={selectedCarService || undefined}
+            placeholder="Avto servis seç"
+            onChange={setSelectedCarService}
+          >
+            {[...Array(5)].map((_, index) => (
+              <Option key={index} value={`service${index + 1}`}>
+                Servis {index + 1}
+              </Option>
+            ))}
+          </Select>
+        </Space>
+      ),
+      required: !!selectedMaster && !!selectedCarService,
+    },
+    {
+      title: "Ödəniş",
+      content: (
+        <Space direction="vertical" style={{ width: "100%" }}>
+          <Input
+            value={totalPrice}
+            onChange={(e) => setTotalPrice(e.target.value)}
+            placeholder="Ümumi məbləğ"
+          />
+          <Radio.Group
+            value={paymentType}
+            onChange={(e) => setPaymentType(e.target.value)}
+          >
+            <Radio value={true}>Tam ödəniş</Radio>
+            <Radio value={false}>Borca yazdır</Radio>
+          </Radio.Group>
+          <Input
+            value={totalDept}
+            onChange={(e) => setTotalDept(e.target.value)}
+            placeholder="Ödənilməli məbləğ"
+          />
+          <Select
+            value={selectedPaymentType || undefined}
+            placeholder="Ödəniş növü"
+            onChange={setSelectedPaymentType}
+          >
+            {[...Array(5)].map((_, index) => (
+              <Option key={index} value={`pay${index + 1}`}>
+                Ödəniş {index + 1}
+              </Option>
+            ))}
+          </Select>
+          <Dragger
+            name="file"
+            style={{ maxWidth: "338px", maxHeight: "129px" }}
+            multiple
+            beforeUpload={() => false}
+          >
+            <p className="ant-upload-drag-icon">
+              <InboxOutlined />
+            </p>
+            <p className="ant-upload-text">
+              Dosyaları buraya sürükleyin və ya klikləyin
+            </p>
+          </Dragger>
+        </Space>
+      ),
+      required: !!totalPrice && !!selectedPaymentType,
+    },
+  ];
+
+  const next = () => setCurrent(current + 1);
+  const prev = () => setCurrent(current - 1);
+
+  const handleSave = () => {
+    setLoading(true);
+    setTimeout(() => {
+      setLoading(false);
+      message.success("Təmir qeydi uğurla göndərildi 🚀");
+      onClose();
+      setCurrent(0);
+    }, 1500);
+  };
+
   return (
     <Modal
       title="Təmir"
       open={isOpen}
       onCancel={onClose}
-      footer={[
-        <Button key="save" type="primary" onClick={handleSave} loading={loading} disabled={!isButtonDisabled}>
-          Kaydet
-        </Button>
-      ]}
+      footer={null}
       centered
       width="90%"
       maskClosable={false}
       style={{ maxWidth: "777px" }}
       closeIcon={<CloseOutlined onClick={onClose} />}
     >
-      <div className="modal-content mt-4">
-        <div className="custom-dropdown-container d-flex flex-column justify-content-between">
-          <Select
-            value={selectedCar || undefined}
-            showSearch
-            style={{ width: "100%" }}
-            placeholder="Maşın seçin"
-            onChange={setSelectedCar}
-            className="custom-select-dropdown"
+      <Steps current={current} className="mb-6">
+        {steps.map((item, index) => (
+          <Step key={index} title={item.title} />
+        ))}
+      </Steps>
+
+      <div style={{ marginTop: 24 }}>{steps[current].content}</div>
+
+      <div style={{ marginTop: 24, textAlign: "right" }}>
+        {current > 0 && (
+          <Button style={{ margin: "0 8px" }} onClick={() => prev()}>
+            Geri
+          </Button>
+        )}
+        {current < steps.length - 1 && (
+          <Button
+            type="primary"
+            onClick={() => next()}
+            disabled={!steps[current].required}
           >
-            {[...Array(20)].map((_, index) => (
-              <Option key={index} value={`option${index + 1}`}>Seçenek {index + 1}</Option>
-            ))}
-          </Select>
-          <hr />
-          <div className="d-flex gap-2 flex-column">
-  <p>Detal adı:</p>
-  {oilDetails.map((item, index) => (
-    <div key={index} className="d-flex justify-content-between flex-wrap mb-2">
-      <Input
-        value={item.name}
-        className="custom-input w-100"
-        style={{ maxWidth: "338px" }}
-        onChange={(e) => handleOilDetailChange(index, "name", e.target.value)}
-        placeholder="Ad"
-      />
-      <Input
-        value={item.price}
-        className="custom-input w-100"
-        style={{ maxWidth: "338px" }}
-        onChange={(e) => handleOilDetailChange(index, "price", e.target.value)}
-        placeholder="Qiymət"
-      />
-    </div>
-  ))}
-  <Button onClick={() => setOilDetails([...oilDetails, { name: '', price: '' }])}>
-    Əlavə et
-  </Button>
-</div>
-
-
-     
-          
-          <hr />
-          <div className="d-flex flex-wrap justify-content-between">
-            <Select value={selectedMaster || undefined} showSearch style={{ maxWidth: "338px" }} placeholder="Usta seç" onChange={setSelectedMaster} className="custom-select-dropdown w-100">
-              {[...Array(20)].map((_, index) => (
-                <Option key={index} value={`option${index + 1}`}>Seçenek {index + 1}</Option>
-              ))}
-            </Select>
-            <Select value={selectedCarService || undefined} showSearch style={{ maxWidth: "338px" }} placeholder="Avto servis seç" onChange={setSelectedCarService} className="custom-select-dropdown w-100">
-              {[...Array(20)].map((_, index) => (
-                <Option key={index} value={`option${index + 1}`}>Seçenek {index + 1}</Option>
-              ))}
-            </Select>
-            <Input value={totalPrice} className="mt-3 custom-input" onChange={(e) => setTotalPrice(e.target.value)} placeholder="Ümnumi məbləğ" />
-            <Radio.Group className="mt-3" onChange={(e) => setPaymentType(e.target.value)}>
-              <Radio value={true}>Tam ödəniş</Radio>
-              <Radio value={false}>Borca yazdır</Radio>
-            </Radio.Group>
-            <Input value={totalDept} className="mt-3 custom-input" onChange={(e) => setTotalDept(e.target.value)} placeholder="Ödənilməli məbləğ" />
-          </div>
-          <hr />
-          <div className="d-flex flex-wrap justify-content-between">
-            <Select value={selectedPaymentType || undefined} showSearch style={{ maxWidth: "338px" }} placeholder="Ödəniş növü" onChange={setSelectedPaymentType} className="custom-select-dropdown w-100">
-              {[...Array(20)].map((_, index) => (
-                <Option key={index} value={`option${index + 1}`}>Seçenek {index + 1}</Option>
-              ))}
-            </Select>
-            <Dragger name="file" style={{ maxWidth: "338px", maxHeight: "129px" }} multiple beforeUpload={() => false}>
-              <p className="ant-upload-drag-icon"><InboxOutlined /></p>
-              <p className="ant-upload-text">Dosyaları buraya sürükleyin veya tıklayın</p>
-              <p className="ant-upload-hint">Tek veya birden fazla dosya yükleyebilirsiniz.</p>
-            </Dragger>
-          </div>
-        </div>
+            Növbəti
+          </Button>
+        )}
+        {current === steps.length - 1 && (
+          <Button
+            type="primary"
+            loading={loading}
+            onClick={handleSave}
+            disabled={!steps[current].required}
+          >
+            Kaydet
+          </Button>
+        )}
       </div>
     </Modal>
   );
