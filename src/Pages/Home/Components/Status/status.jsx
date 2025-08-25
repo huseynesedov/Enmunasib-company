@@ -4,13 +4,13 @@ import { BiSolidCarMechanic, BiTimer } from "react-icons/bi";
 import { MdOutlineCarCrash } from "react-icons/md";
 import { TiTickOutline } from "react-icons/ti";
 
-import ActiveModal from '../../../../Modals/Home/Activate/carsNotLine.active';
-import OilRepairSend from '../../../../Modals/Home/Oil-Repair/oil';
-import RezervHandOver from '../../../../Modals/Home/Rezerv/handover';
-import ExtendTime from '../../../../Modals/Home/Rezerv/extendTime';
-import SendForRepair from '../../../../Modals/Home/Repair/SendForRepair';
-import Rezerv from '../../../../Modals/Home/BookNow/rezerv';
-import RepairActive from '../../../../Modals/Home/Repair/repairActive';
+import ActiveModal from '@modals/Home/Activate/carsNotLine.active';
+import OilRepairSend from '@modals/Home/Oil-Repair/oil';
+import RezervHandOver from '@modals/Home/Rezerv/handover';
+import ExtendTime from '@modals/Home/Rezerv/extendTime';
+import SendForRepair from '@modals/Home/Repair/SendForRepair';
+import Rezerv from '@modals/Home/BookNow/rezerv';
+import RepairActive from '@modals/Home/Repair/repairActive';
 
 const Status = () => {
     const [isModalActiveOpen, setIsModalActiveOpen] = useState(false);

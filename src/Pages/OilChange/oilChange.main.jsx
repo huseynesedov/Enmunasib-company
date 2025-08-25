@@ -2,23 +2,23 @@ import React from 'react';
 import { IoIosAddCircle } from "react-icons/io";
 import { Content } from 'antd/es/layout/layout';
 
-import MastersList from './components/master.list';
-import AddMasterModal from '@modals/Masters/master.add';
+import OilChangeList from './components/oilChange.list';
+import AddOilChange from '@modals/OilChange/oil.add';
 
-const Masters = () => {
-    const [isMasterModal, setIsMasterModal] = React.useState(false);
+const AvtoService = () => {
+    const [isAvtoServiceModal, setIsAvtoServiceModal] = React.useState(false);
 
     return (
         <>
             <div className='d-flex w-100 flex-wrap justify-content-between'>
                 <div>
-                    <h2>Ustalar</h2>
+                    <h2>Yağ dəyişimi</h2>
                 </div>
 
                 <div className='d-flex flex-wrap' style={{ gap: "9px 0px" }}>
                     <button 
                         className='thon_add_button me-2'
-                        onClick={() => setIsMasterModal(true)}
+                        onClick={() => setIsAvtoServiceModal(true)}
                     >
                         Əlavə et
                         <IoIosAddCircle className='fs-24 ms-2' />
@@ -28,16 +28,16 @@ const Masters = () => {
 
             <div className="d-flex">
                 <Content>
-                    <MastersList />
+                    <OilChangeList />
                 </Content>
             </div>
 
-            <AddMasterModal
-                open={isMasterModal}
-                onCancel={() => setIsMasterModal(false)}
+            <AddOilChange
+                open={isAvtoServiceModal}
+                onCancel={() => setIsAvtoServiceModal(false)}
             />
         </>
     )
 }
 
-export default Masters;
+export default AvtoService;

@@ -10,10 +10,6 @@ import { IoMdInformationCircle } from "react-icons/io";
 import Filters from "./filters";
 
 const RezerveList = () => {
-   
-
-
-
 
 
 
@@ -24,15 +20,27 @@ const RezerveList = () => {
             key: "status",
             width: 100,
             ellipsis: { showTitle: false },
-            render: (text) => (
-                <Tooltip title={<TooltipContent messages={[text, "Maşın aktivdir", "Servisə gedəcək"]} />}>
-                    <div className="ofis">
-                        <div className="ofis-border"></div>
-                        {text}
-                    </div>
+            render: (text) => {
+                const getStatusColor = (status) => {
+                    switch (status) {
+                        case "Ofis":
+                            return "ofis"; // qirmizi
+                        case "Web":
+                            return "web"; // cyan
+                        default:
+                            return "status-default";
+                    }
+                };
+                return (
+                    <Tooltip title={<TooltipContent messages={[text]} />}>
+                        <div className={` ${getStatusColor(text)}`}>
+                            <div className={`${getStatusColor(text)}-border`}></div>
+                            {text}
+                        </div>
+                    </Tooltip>
+                )
+            },
 
-                </Tooltip>
-            ),
         },
         {
             title: "R.kodu",
@@ -153,23 +161,26 @@ const RezerveList = () => {
     const data = [
         {
             key: "1",
-            status: "ofis",
-            status_number: "1",
-            number: "77-HH-005",
-            name: "Hüseyn Əsədov",
-            age: "34BH67Z",
-            date: "2025-03-15",
-            services: "Yağ Dəyişimi",
+            status: "Ofis",
+            name: "RK-001",
+            price: "Toyota Prius 2015",
+            type: "Hüseyn Əsədov",
+            net_profit: "5",       // Gün sayı
+            total_amount: "250 AZN", // Ü.Məbləğ üçün ayrıca key əlavə etmək olar
+            service: "Full Paket",
         },
         {
             key: "2",
-            number: "99-XX-123",
-            name: "Elvin Məmmədov",
-            age: "98GH45A",
-            date: "2025-04-20",
-            services: "Təkər Dəyişimi",
+            status: "Web",
+            name: "RK-002",
+            price: "BMW X5 2018",
+            type: "Elvin Məmmədov",
+            net_profit: "3",
+            total_amount: "450 AZN",
+            service: "Yalnız maşın",
         },
     ];
+
     const [open, setOpen] = useState(false);
     return (
         <>

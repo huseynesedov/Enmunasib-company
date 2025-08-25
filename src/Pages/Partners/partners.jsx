@@ -3,7 +3,7 @@ import { IoIosAddCircle } from "react-icons/io";
 import { Content } from 'antd/es/layout/layout';
 
 import PartnersList from './Components/partnerlist';
-import PartnerModal from '../../Modals/partners/partner.modal';
+import PartnerModal from '@modals/partners/partner.modal';
 
 const Partners = () => {
   const [openPartnerModal, setOpenPartnerModal] = React.useState(false);

@@ -74,19 +74,40 @@ const CarsList = () => {
             title: "Status",
             dataIndex: "status",
             key: "status",
-            width:100,
+            width: 100,
             ellipsis: { showTitle: false },
-            render: (text) => (
-                <Tooltip title={<TooltipContent messages={[text, "Maşın aktivdir", "Servisə gedəcək"]} />}>
-                    
-                    <div className="rezerv">
-                        <div className="rezerv-border"></div>
-                        {text}
+            render: (text) => {
+                // Statusa görə rəng className
+                const getStatusColor = (status) => {
+                    switch (status) {
+                        case "Boş":
+                            return "empty"; // yaşıl
+                        case "Rezervde":
+                            return "rezerv"; // sarı
+                        case "Meşğul":
+                            return "busy"; // qırmızı
+                        case "Təmirdə":
+                            return "repair"; // boz
+                        default:
+                            return "status-default";
+                    }
+                };
 
-                    </div>
-
-                </Tooltip>
-            ),
+                return (
+                    <Tooltip
+                        title={
+                            <TooltipContent
+                                messages={[text, "Maşın aktivdir", "Servisə gedəcək"]}
+                            />
+                        }
+                    >
+                        <div className={` ${getStatusColor(text)}`}>
+                            <div className={`${getStatusColor(text)}-border`}></div>
+                            {text}
+                        </div>
+                    </Tooltip>
+                );
+            },
         },
         {
             title: "Brend-Model",
@@ -119,7 +140,7 @@ const CarsList = () => {
             render: (text) => (
                 <div className="d-flex justify-content-center">
                     <Tooltip title={<TooltipContent messages={[text, "Sifariş sabahdır", "Tarix dəyişdirildi"]} />}>
-                        {text}
+                        {text}%
                     </Tooltip>
                 </div>
             ),
@@ -133,9 +154,8 @@ const CarsList = () => {
             render: (text) => (
                 <>
                     <div className="d-flex justify-content-center">
-                        <Tooltip title={<TooltipContent messages={[text, "Yağ dəyişimi edildi", "Əlavə xidmət yoxdur"]} />}>
+                        <Tooltip title={<TooltipContent messages={[text]} />}>
                             {text}
-                            30%
                             <CiEdit className="fs-24 ms-2" />
                         </Tooltip>
                     </div>
@@ -212,23 +232,46 @@ const CarsList = () => {
     const data = [
         {
             key: "1",
-            status: "Rezervde",
-            status_number: "1",
-            number: "77-HH-005",
-            name: "Hüseyn Əsədov",
-            age: "34BH67Z",
-            date: "2025-03-15",
-            services: "Yağ Dəyişimi",
+            status: "Boş",
+            brend: "BMW X5 - 2021",
+            number: "90-AA-123",
+            partner_count: 2,
+            depozit: "500₼",
+            g_price: "120₼",
+            services: "Yağ dəyişimi",
         },
         {
             key: "2",
-            number: "99-XX-123",
-            name: "Elvin Məmmədov",
-            age: "98GH45A",
-            date: "2025-04-20",
-            services: "Təkər Dəyişimi",
+            status: "Rezervde",
+            brend: "Mercedes C200 - 2020",
+            number: "10-KK-555",
+            partner_count: 1,
+            depozit: "700₼",
+            g_price: "150₼",
+            services: "Təkər dəyişimi",
+        },
+        {
+            key: "3",
+            status: "Meşğul",
+            brend: "Toyota Camry - 2019",
+            number: "99-XX-777",
+            partner_count: 3,
+            depozit: "400₼",
+            g_price: "100₼",
+            services: "Yuyulma, texniki baxış",
+        },
+        {
+            key: "4",
+            status: "Təmirdə",
+            brend: "Hyundai Sonata - 2022",
+            number: "77-YY-999",
+            partner_count: 5,
+            depozit: "650₼",
+            g_price: "200₼",
+            services: "Əlavə xidmət yoxdur",
         },
     ];
+
 
     return (
         <>

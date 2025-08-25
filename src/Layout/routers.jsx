@@ -1,22 +1,26 @@
 import React, { useContext, useEffect } from "react";
 import { Route, Routes, Navigate, useParams } from "react-router-dom";
-import { AuthContext } from "../Contexts/Login/loginContext";
 
-import Home from "../Pages/Home/home";
-import Partners from "../Pages/Partners/partners";
-import Cars from "../Pages/Cars/car";
-import Services from "../Pages/Services/service";
-import Rezervs from "../Pages/Reserves/reserve";
-import Drivers from "../Pages/Drivers/driver";
-import Workers from "../Pages/workers/workers";
-import Masters from "../Pages/Masters/master.main";
+
+import { AuthContext } from "@contexts/Login/loginContext";
+
+import Home from "@pages/Home/home";
+import Partners from "@pages/Partners/partners";
+import Cars from "@pages/Cars/car";
+import Services from "@pages/Services/service";
+import Rezervs from "@pages/Reserves/reserve";
+import Workers from "@pages/workers/workers";
+import Masters from "@pages/Masters/master.main";
+import AvtoService from "@pages/AvtoService/avtoservice.main";
+import OilChangeList from "@pages/OilChange/oilChange.main";
+import RepairMain from "@pages/Repair/repair.main";
 
 const Wrapper = ({ Component }) => {
+
   const { userId } = useContext(AuthContext);
   const { lang } = useParams();
 
   useEffect(() => {
-    // localStorage'da dil yoksa ekle
     if (!localStorage.getItem("lang")) {
       localStorage.setItem("lang", "az");
     }
@@ -57,9 +61,11 @@ const RouteList = () => {
       <Route path="/:lang/:userId/cars" element={<Wrapper Component={Cars} />} />
       <Route path="/:lang/:userId/services" element={<Wrapper Component={Services} />} />
       <Route path="/:lang/:userId/rezervs" element={<Wrapper Component={Rezervs} />} />
-      <Route path="/:lang/:userId/drivers" element={<Wrapper Component={Drivers} />} />
       <Route path="/:lang/:userId/workers" element={<Wrapper Component={Workers} />} />
       <Route path="/:lang/:userId/masters" element={<Wrapper Component={Masters} />} />
+      <Route path="/:lang/:userId/avtoservis" element={<Wrapper Component={AvtoService} />} />
+      <Route path="/:lang/:userId/oilchange" element={<Wrapper Component={OilChangeList} />} />
+      <Route path="/:lang/:userId/repair" element={<Wrapper Component={RepairMain} />} />
 
       {/* Geçersiz URL yönlendirmesi */}
       <Route path="*" element={<Navigate to={`/${lang}/${userId || "login"}`} replace />} />

@@ -3,8 +3,8 @@ import { IoIosAddCircle } from "react-icons/io";
 import { Content } from 'antd/es/layout/layout';
 
 import ServicesList from './Components/servicesList';
-import AdditionalServicesModal from '../../Modals/services/additionalServices';
-import WarrantyPackageModal from '../../Modals/services/warrantyPackage';
+import AdditionalServicesModal from '@modals/services/additionalServices';
+import WarrantyPackageModal from '@modals/services/warrantyPackage';
 
 
 

@@ -5,7 +5,7 @@ import { CiTimer } from "react-icons/ci";
 import { MdBusinessCenter } from "react-icons/md";
 import { IoIosAddCircle } from "react-icons/io";
 import { IoPrintSharp } from "react-icons/io5";
-import AddRezerv from "../../../../../Modals/Home/BookNow/rezerv";
+import AddRezerv from "@modals/Home/BookNow/rezerv";
 const Rezerv = () => {
     const [isModalRezerv, setIsModalRezerv] = useState(false);
 

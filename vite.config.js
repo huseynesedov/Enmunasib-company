@@ -9,6 +9,8 @@ export default defineConfig({
     alias: {
       "@": resolve(__dirname, "src"),
       "@pages": resolve(__dirname, "src/Pages"),
+      "@modals": resolve(__dirname, "src/Modals"),
+      "@contexts": resolve(__dirname, "src/Contexts"),
       "@assets": resolve(__dirname, "src/Assets"),
     },
   },

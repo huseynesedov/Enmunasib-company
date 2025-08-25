@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Modal, Form, Input, Select, Steps, TimePicker } from 'antd';
 const { Step } = Steps;
 
-const AddMasterModal = ({ open, onCancel }) => {
+const AddAvtoServiceModal = ({ open, onCancel }) => {
     const [form] = Form.useForm();
     const [current, setCurrent] = useState(0);
 
@@ -23,13 +23,10 @@ const AddMasterModal = ({ open, onCancel }) => {
             title: 'Əsas Məlumat',
             content: (
                 <>
-                    <Form.Item label="Ad Soyad" name="fullName" rules={[{ required: true }]}>
+                    <Form.Item label="Ad" name="fullName" rules={[{ required: true }]}>
                         <Input />
                     </Form.Item>
                     <Form.Item label="Nömrə" name="phone" rules={[{ required: true }]}>
-                        <Input />
-                    </Form.Item>
-                    <Form.Item label="Email" name="email" rules={[{ type: 'email' }]}>
                         <Input />
                     </Form.Item>
                     <Form.Item label="İxtisas" name="specialty">
@@ -62,35 +59,6 @@ const AddMasterModal = ({ open, onCancel }) => {
                 </>
             )
         },
-        // {
-        //     title: 'Maliyyə',
-        //     content: (
-        //         <>
-        //             <Form.Item label="Ödənilmiş məbləğ" name="paidAmount">
-        //                 <InputNumber min={0} style={{ width: '100%' }} />
-        //             </Form.Item>
-        //             <Form.Item label="Ödəniləcək məbləğ" name="dueAmount">
-        //                 <InputNumber min={0} style={{ width: '100%' }} />
-        //             </Form.Item>
-        //         </>
-        //     )
-        // },
-        // {
-        //     title: 'Performans',
-        //     content: (
-        //         <>
-        //             <Form.Item label="Reytinq" name="rating">
-        //                 <InputNumber min={0} max={5} step={0.1} style={{ width: '100%' }} />
-        //             </Form.Item>
-        //             <Form.Item label="Tamamlanma faizi" name="completionRate">
-        //                 <InputNumber min={0} max={100} style={{ width: '100%' }} />
-        //             </Form.Item>
-        //             <Form.Item label="Gecikmə sayı" name="delays">
-        //                 <InputNumber min={0} style={{ width: '100%' }} />
-        //             </Form.Item>
-        //         </>
-        //     )
-        // },
         {
             title: 'Əlavə',
             content: (
@@ -98,9 +66,6 @@ const AddMasterModal = ({ open, onCancel }) => {
                     <Form.Item label="Qeyd" name="note">
                         <Input.TextArea />
                     </Form.Item>
-                    {/* <Form.Item label="Qeyd tarixi" name="createdAt">
-                        <DatePicker style={{ width: '100%' }} />
-                    </Form.Item> */}
                 </>
             )
         }
@@ -130,4 +95,4 @@ const AddMasterModal = ({ open, onCancel }) => {
     );
 };
 
-export default AddMasterModal;
+export default AddAvtoServiceModal;

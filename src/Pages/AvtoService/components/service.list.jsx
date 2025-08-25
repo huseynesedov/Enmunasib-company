@@ -2,11 +2,10 @@ import React from 'react';
 import { Table, Tag } from 'antd';
 import { Content } from 'antd/es/layout/layout';
 
-const MastersList = () => {
+const AvtoServiceList = () => {
     const columns = [
-        { title: 'Ad Soyad', dataIndex: 'fullName', key: 'fullName' },
+        { title: 'Ad', dataIndex: 'fullName', key: 'fullName' },
         { title: 'Nömrə', dataIndex: 'phone', key: 'phone' },
-        { title: 'Email', dataIndex: 'email', key: 'email' },
         { title: 'İxtisas', dataIndex: 'specialty', key: 'specialty' },
         { title: 'Ünvan', dataIndex: 'address', key: 'address' },
         { title: 'İş günləri', dataIndex: 'workDays', key: 'workDays' },
@@ -16,21 +15,13 @@ const MastersList = () => {
 
     const data = [
         {
-            fullName: 'Elşən Məmmədov',
+            fullName: 'Hybrid Auto Service',
             phone: '+994501234567',
-            email: 'elsan@mail.com',
             specialty: 'Elektrik',
-            experience: 5,
-            address: 'Bakı',
+            address: 'Bakı, Nizami küç.',
             workDays: 'B.e - C.a',
             workHours: '09:00-18:00',
-            availability: 'Hazırdır',
             paidAmount: 200,
-            rating: 4.8,
-            completionRate: 95,
-            delays: 1,
-            note: 'Yaxşı işçi',
-            createdAt: '2025-08-15'
         }
     ];
 
@@ -44,7 +35,6 @@ const MastersList = () => {
                     dataSource={data}
                     rowKey="id"
                     scroll={{ x: true }}
-
                 />
             </Content>
 
@@ -52,4 +42,4 @@ const MastersList = () => {
     )
 };
 
-export default MastersList;
+export default AvtoServiceList;

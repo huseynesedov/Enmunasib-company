@@ -23,7 +23,7 @@ i18n
   .init({
     resources,
     lng: getInitialLanguage(),
-    fallbackLng: "en",
+    fallbackLng: "az",
     interpolation: { escapeValue: false }
   });
 

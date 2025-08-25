@@ -2,7 +2,7 @@ import React from 'react'
 import { IoIosAddCircle } from "react-icons/io";
 import { Content } from 'antd/es/layout/layout';
 import WorkersList from './components/worker.list';
-import AddWorkerModal from '../../Modals/workers/addWorker.modal';
+import AddWorkerModal from '@modals/workers/addWorker.modal';
 
 
 

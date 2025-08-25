@@ -3,7 +3,7 @@ import { IoIosAddCircle } from "react-icons/io";
 import { Content } from 'antd/es/layout/layout';
 
 import CarsList from './Components/carsList';
-import CarrAddModal from '../../Modals/Cars/car.add';
+import CarrAddModal from '@modals/Cars/car.add';
 
 const Car = () => {
 
@@ -29,7 +29,7 @@ const Car = () => {
       </div>
 
       <CarrAddModal
-        visible={isModalCarAdd}        // prop ismi AntD Modal ile eşleşmeli
+        visible={isModalCarAdd}
         onCancel={() => setIsModalCarAdd(false)}
       />
 

@@ -37,10 +37,11 @@ const Leftbar = () => {
     { icon: <MdOutlineMiscellaneousServices />, text: 'Xidmətlər', link: `/${lang}/${userId}/services` },
     { icon: <GrUserWorker />, text: 'İşcilər', link: `/${lang}/${userId}/workers` },
     { icon: <LuUserCog />, text: 'Ustalar', link: `/${lang}/${userId}/masters` },
+    { icon: <GiMechanicGarage />, text: 'Avto servis', link: `/${lang}/${userId}/avtoservis` },
+    { icon: <MdOilBarrel />, text: 'Yağ dəyişmə', link: `/${lang}/${userId}/oilchange` },
+    { icon: <MdCarRepair />, text: 'Təmir', link: `/${lang}/${userId}/repair` },
 
-    { icon: <GiMechanicGarage />, text: 'Avto servis', link: `/${lang}/${userId}/ustsalar` },
-    { icon: <MdOilBarrel />, text: 'Yağ dəyişmə', link: `/${lang}/${userId}/yag-deyisme` },
-    { icon: <MdCarRepair />, text: 'Təmir', link: `/${lang}/${userId}/temir` },
+    
     { icon: <FaIdCardAlt />, text: 'Sürücülər', link: `/${lang}/${userId}/drivers`, disabled: true },
     { icon: <TbCashBanknoteOff />, text: 'Xərçlər', link: `/${lang}/${userId}/xercler`, disabled: true },
     { icon: <LiaUsersSolid />, text: 'Müştərilər', link: `/${lang}/${userId}/Customers`, disabled: true },
