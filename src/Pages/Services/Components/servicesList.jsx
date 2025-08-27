@@ -20,11 +20,6 @@ const ServicesList = () => {
     };
 
 
-
-   
-
-
-
     const columns = [
         {
             title: "Status",
@@ -115,26 +110,44 @@ const ServicesList = () => {
         },
     ];
 
-    const data = [
-        {
-            key: "1",
-            status: "Rezervde",
-            status_number: "1",
-            number: "77-HH-005",
-            name: "Hüseyn Əsədov",
-            age: "34BH67Z",
-            date: "2025-03-15",
-            services: "Yağ Dəyişimi",
-        },
-        {
-            key: "2",
-            number: "99-XX-123",
-            name: "Elvin Məmmədov",
-            age: "98GH45A",
-            date: "2025-04-20",
-            services: "Təkər Dəyişimi",
-        },
-    ];
+   const data = [
+  {
+    key: 1,
+    status: "Əlavə xidmətlər",
+    name: "Uşaq oturacağı",
+    price: "150₼",
+    type: "Günlük",
+  },
+  {
+    key: 2,
+    status: "Əlavə xidmətlər",
+    name: "GPS Navigasiya",
+    price: "100₼",
+    type: "İcarəyə görə",
+  },
+  {
+    key: 3,
+    status: "Zəmanət paket",
+    name: "Tam servis zəmanəti",
+    price: "1,200₼",
+    type: "Günlük",
+  },
+  {
+    key: 4,
+    status: "Zəmanət paket",
+    name: "Yağ dəyişimi zəmanəti",
+    price: "500₼",
+    type: "İcarəyə görə",
+  },
+  {
+    key: 5,
+    status: "Əlavə xidmətlər",
+    name: "Sığorta xidməti",
+    price: "700₼",
+    type: "Günlük",
+  },
+];
+
     const [open, setOpen] = useState(false);
     return (
         <>

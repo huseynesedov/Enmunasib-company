@@ -142,6 +142,7 @@ const AddRepair = ({ open, onCancel }) => {
       onCancel={onCancel}
       footer={null}
       width={600}
+      centered
     >
       <Steps current={current}>
         {steps.map(item => (

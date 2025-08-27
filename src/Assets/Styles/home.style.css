@@ -3,6 +3,15 @@
     background-color: var(--home-reports-bg-color);
 }
 
+.thon_homeSearchIcon {
+    background-color: white;
+    width: 30px;
+    padding: 5px;
+    height: 33px;
+    border-radius: 6px;
+    border: 1px solid;
+}
+
 /* Report */
 .thon_home_reportContainer {
     padding: 10px 30px;

@@ -1,14 +1,18 @@
 import React, { useState } from "react";
-import { Badge, Table, Tooltip } from "antd";
+import { Badge, Input, Table, Tooltip } from "antd";
 import { IoMdInformationCircle } from "react-icons/io";
 import { CiTimer } from "react-icons/ci";
 import { MdBusinessCenter } from "react-icons/md";
 import { IoIosAddCircle } from "react-icons/io";
-import { IoPrintSharp } from "react-icons/io5";
-import AddRezerv from "@modals/Home/BookNow/rezerv";
+import { IoPrintSharp } from "react-icons/io5"
+import { FaSearch } from "react-icons/fa";;
+import { motion, AnimatePresence } from "framer-motion";
+
+import AddRezerv from "@modals/Rezerve/rezerv.add";
+
 const Rezerv = () => {
     const [isModalRezerv, setIsModalRezerv] = useState(false);
-
+    const [showSearch, setShowSearch] = useState(false);
 
     const columns = [
         {
@@ -154,8 +158,37 @@ const Rezerv = () => {
                         <IoIosAddCircle className="fs-24 me-2" />
                         Yeni Rezerv
                     </button>
+
                 </div>
-                <div>
+
+
+                <div className="d-flex align-items-center gap-4">
+                    <div className="d-flex align-items-center gap-2">
+                        <AnimatePresence>
+                            {showSearch && (
+                                <motion.div
+                                    initial={{ width: 0, opacity: 0 }}
+                                    animate={{ width: 200, opacity: 1 }}
+                                    exit={{ width: 0, opacity: 0 }}
+                                    transition={{ type: "spring", stiffness: 300, damping: 20 }}
+                                    className="ms-2"
+                                >
+                                    <Input
+                                        placeholder="Axtar..."
+                                        autoFocus
+                                        style={{ borderRadius: "12px" }}
+                                    />
+                                </motion.div>
+                            )}
+                        </AnimatePresence>
+                        <FaSearch
+                            className="thon_new fs-20 cursor-pointer thon_homeSearchIcon"
+                            style={{ marginLeft: showSearch ? 0 : 8 }}
+                            onClick={() => setShowSearch((prev) => !prev)}
+                        />
+                    </div>
+
+
                     <Badge.Ribbon text="Tezliklə" color="orange">
                         <div style={{ pointerEvents: 'none', opacity: 0.6 }}>
                             <button className="thon_TableButton thon_print d-flex align-items-center">

@@ -5,11 +5,11 @@ import { MdOutlineCarCrash } from "react-icons/md";
 import { TiTickOutline } from "react-icons/ti";
 
 import ActiveModal from '@modals/Home/Activate/carsNotLine.active';
-import OilRepairSend from '@modals/Home/Oil-Repair/oil';
+import OilRepairSend from '@modals/OilChange/oil.add';
 import RezervHandOver from '@modals/Home/Rezerv/handover';
 import ExtendTime from '@modals/Home/Rezerv/extendTime';
-import SendForRepair from '@modals/Home/Repair/SendForRepair';
-import Rezerv from '@modals/Home/BookNow/rezerv';
+import SendForRepair from '@modals/Repair/repair.add';
+import AddRezerv from '@modals/Rezerve/rezerv.add';
 import RepairActive from '@modals/Home/Repair/repairActive';
 
 const Status = () => {
@@ -94,8 +94,8 @@ const Status = () => {
             />
 
             <OilRepairSend
-                isOpen={isModalOilRepairOpen}
-                onClose={() => setIsModalOilRepairOpen(false)}
+                open={isModalOilRepairOpen}
+                onCancel={() => setIsModalOilRepairOpen(false)}
             />
 
             <RezervHandOver
@@ -109,10 +109,10 @@ const Status = () => {
             />
 
             <SendForRepair
-                isOpen={isModalSendForRepair}
-                onClose={() => setIsModalSendForRepair(false)}
+                open={isModalSendForRepair}
+                onCancel={() => setIsModalSendForRepair(false)}
             />
-            <Rezerv
+            <AddRezerv
                 isOpen={isModalRezerv}
                 onClose={() => setIsModalRezerv(false)}
             />

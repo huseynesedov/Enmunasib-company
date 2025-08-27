@@ -19,34 +19,31 @@ const RezerveList = () => {
             dataIndex: "status",
             key: "status",
             width: 100,
-            ellipsis: { showTitle: false },
             render: (text) => {
                 const getStatusColor = (status) => {
                     switch (status) {
                         case "Ofis":
-                            return "ofis"; // qirmizi
+                            return "ofis";
                         case "Web":
-                            return "web"; // cyan
+                            return "web";
                         default:
                             return "status-default";
                     }
                 };
                 return (
                     <Tooltip title={<TooltipContent messages={[text]} />}>
-                        <div className={` ${getStatusColor(text)}`}>
-                            <div className={`${getStatusColor(text)}-border`}></div>
+                        <div className={`${getStatusColor(text)}`}>
+                            <div className={`${getStatusColor(text)}-border`} />
                             {text}
                         </div>
                     </Tooltip>
-                )
+                );
             },
-
         },
         {
             title: "R.kodu",
             dataIndex: "name",
             key: "name",
-            ellipsis: { showTitle: false },
             render: (text) => (
                 <Tooltip title={<TooltipContent messages={[text, "Kod təsdiqləndi"]} />}>
                     {text}
@@ -57,9 +54,14 @@ const RezerveList = () => {
             title: "Brend - Model",
             dataIndex: "price",
             key: "price",
-            ellipsis: { showTitle: false },
             render: (text) => (
-                <Tooltip title={<TooltipContent messages={[text, "VIP Müştəri", "Ödəniş tamamlandı"]} />}>
+                <Tooltip
+                    title={
+                        <TooltipContent
+                            messages={[text, "VIP Müştəri", "Ödəniş tamamlandı"]}
+                        />
+                    }
+                >
                     {text}
                     <IoMdInformationCircle className="fs-24 text_blue" />
                 </Tooltip>
@@ -69,10 +71,15 @@ const RezerveList = () => {
             title: "Müştəri",
             dataIndex: "type",
             key: "type",
-            ellipsis: { showTitle: false },
             render: (text) => (
                 <div className="d-flex justify-content-center">
-                    <Tooltip title={<TooltipContent messages={[text, "Sifariş sabahdır", "Tarix dəyişdirildi"]} />}>
+                    <Tooltip
+                        title={
+                            <TooltipContent
+                                messages={[text, "Sifariş sabahdır", "Tarix dəyişdirildi"]}
+                            />
+                        }
+                    >
                         <IoMdInformationCircle className="fs-24" />
                     </Tooltip>
                 </div>
@@ -83,46 +90,48 @@ const RezerveList = () => {
             dataIndex: "net_profit",
             key: "net_profit",
             width: 100,
-            ellipsis: { showTitle: false },
             render: (text) => (
-                <Tooltip title={<TooltipContent messages={[text, "Sifariş sabahdır", "Tarix dəyişdirildi"]} />}>
+                <Tooltip
+                    title={
+                        <TooltipContent
+                            messages={[text, "Sifariş sabahdır", "Tarix dəyişdirildi"]}
+                        />
+                    }
+                >
                     {text}
-
                     <IoMdInformationCircle className="fs-24 text_blue" />
                 </Tooltip>
-
             ),
         },
         {
             title: "Ü.Məbləğ",
-            dataIndex: "net_profit",
-            key: "net_profit",
+            dataIndex: "total_amount",
+            key: "total_amount",
             width: 100,
-            ellipsis: { showTitle: false },
-            render: (text) => (
-                { text }
-            ),
+            render: (text) => <span>{text}</span>,
         },
         {
             title: "Xidmət",
-            dataIndex: "net_profit",
-            key: "net_profit",
+            dataIndex: "service",
+            key: "service",
             width: 100,
-            ellipsis: { showTitle: false },
             render: (text) => (
-                <Tooltip title={<TooltipContent messages={[text, "Sifariş sabahdır", "Tarix dəyişdirildi"]} />}>
+                <Tooltip
+                    title={
+                        <TooltipContent
+                            messages={[text, "Sifariş sabahdır", "Tarix dəyişdirildi"]}
+                        />
+                    }
+                >
                     {text}
-
                     <IoMdInformationCircle className="fs-24 text_blue" />
                 </Tooltip>
             ),
         },
         {
             title: "",
-            dataIndex: "extendyourtime",
-            key: "extendyourtime",
+            key: "rezerv_tehvili",
             width: 100,
-            ellipsis: { showTitle: false },
             render: () => (
                 <button className="thon_tableButtonDarkBlue">
                     <MdBusinessCenter className="fs-24 me-2" />
@@ -132,10 +141,8 @@ const RezerveList = () => {
         },
         {
             title: "",
-            dataIndex: "extendyourtime",
-            key: "extendyourtime",
+            key: "vaxtini_uzat",
             width: 100,
-            ellipsis: { showTitle: false },
             render: () => (
                 <button className="thon_tableButtonTransparent">
                     <CiTimer className="fs-24 me-2" />
@@ -143,13 +150,10 @@ const RezerveList = () => {
                 </button>
             ),
         },
-
         {
             title: "",
-            dataIndex: "extendyourtime",
-            key: "extendyourtime",
+            key: "delete",
             width: 100,
-            ellipsis: { showTitle: false },
             render: () => (
                 <button className="thon_tableButtonTransparentRed">
                     <MdDelete className="fs-24" />
@@ -157,6 +161,7 @@ const RezerveList = () => {
             ),
         },
     ];
+
 
     const data = [
         {

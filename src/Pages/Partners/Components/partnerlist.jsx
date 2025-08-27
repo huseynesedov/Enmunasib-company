@@ -1,7 +1,8 @@
 import React, { useState } from "react";
-import { Table, Tooltip } from "antd";
+import { Input, Table, Tooltip } from "antd";
 import { MdDelete } from "react-icons/md";
 import { CiEdit } from "react-icons/ci";
+import { GrEdit } from "react-icons/gr";
 
 const PartnersList = () => {
     const [isFocused, setIsFocused] = useState(false);
@@ -64,12 +65,9 @@ const PartnersList = () => {
             ellipsis: { showTitle: false },
             render: (text) => (
                 <>
-                    <div className="d-flex justify-content-center">
-                        <Tooltip title={<TooltipContent messages={[text, "Yağ dəyişimi edildi", "Əlavə xidmət yoxdur"]} />}>
-                            {text}
-                            30%
-                            <CiEdit className="fs-24 ms-2" />
-                        </Tooltip>
+                    <div className="d-flex justify-content-center cursor-pointer">
+                        {text}
+                        <CiEdit className="fs-24 ms-2" />
                     </div>
                 </>
             ),
@@ -82,7 +80,7 @@ const PartnersList = () => {
             ellipsis: { showTitle: false },
             render: (text) => (
                 <Tooltip title={<TooltipContent messages={[text, "Yağ dəyişimi edildi", "Əlavə xidmət yoxdur"]} />}>
-                    {text}
+                    {text}  ₼
 
                 </Tooltip>
             ),
@@ -95,7 +93,7 @@ const PartnersList = () => {
             ellipsis: { showTitle: false },
             render: (text) => (
                 <Tooltip title={<TooltipContent messages={[text, "Yağ dəyişimi edildi", "Əlavə xidmət yoxdur"]} />}>
-                    {text}
+                    {text}  ₼
 
                 </Tooltip>
             ),
@@ -108,11 +106,24 @@ const PartnersList = () => {
             ellipsis: { showTitle: false },
             render: (text) => (
                 <Tooltip title={<TooltipContent messages={[text, "Yağ dəyişimi edildi", "Əlavə xidmət yoxdur"]} />}>
-                    {text}
+                    {text}  ₼
                 </Tooltip>
             ),
         },
-
+        {
+            title: "",
+            dataIndex: "net_profit",
+            key: "net_profit",
+            width: 100,
+            ellipsis: { showTitle: false },
+            render: (text) => (
+                <div className="d-flex  justify-content-center">
+                    <button className="thon_tableButtonTransparentYellow">
+                        <GrEdit className="fs-24" />
+                    </button>
+                </div>
+            ),
+        },
         {
             title: "",
             dataIndex: "extendyourtime",
@@ -129,44 +140,62 @@ const PartnersList = () => {
 
     const data = [
         {
-            key: "1",
-            number: "77-HH-005",
-            name: "Hüseyn Əsədov",
-            age: "34BH67Z",
-            date: "2025-03-15",
-            services: "Yağ Dəyişimi",
+            key: 1,
+            name_surname: "Elvin Məmmədov",
+            number: "0501234567",
+            mail: "elvin@example.com",
+            car_count: 3,
+            interest_rate: "15%",
+            debt: "1200",
+            cost: "500",
+            net_profit: "700",
         },
         {
-            key: "2",
-            number: "99-XX-123",
-            name: "Elvin Məmmədov",
-            age: "98GH45A",
-            date: "2025-04-20",
-            services: "Təkər Dəyişimi",
+            key: 2,
+            name_surname: "Aygün Əliyeva",
+            number: "0707654321",
+            mail: "aygun@example.com",
+            car_count: 1,
+            interest_rate: "20%",
+            debt: "0",
+            cost: "200",
+            net_profit: "800",
+        },
+        {
+            key: 3,
+            name_surname: "Rəşad Hüseynov",
+            number: "0779876543",
+            mail: "reshad@example.com",
+            car_count: 5,
+            interest_rate: "10%",
+            debt: "3000",
+            cost: "1200",
+            net_profit: "1800",
+        },
+        {
+            key: 4,
+            name_surname: "Leyla Quliyeva",
+            number: "0555555555",
+            mail: "leyla@example.com",
+            car_count: 2,
+            interest_rate: "12%",
+            debt: "700",
+            cost: "300",
+            net_profit: "400",
         },
     ];
+
 
     return (
         <>
             {/* Input alanı */}
             <div className="col mt-3 d-flex justify-content-between">
-                <div className={`input-container ${isFocused || inputValue ? "focused" : ""}`}>
+                <div className={`${isFocused || inputValue ? "focused" : ""}`}>
                     {/* Label'in for/id bağlanması ve onClick ile input'a odaklanma */}
-                    <label
-                        htmlFor="custom-input"
-                        className="input-label"
-                        onClick={() => document.getElementById("custom-input").focus()}
-                    >
-                        Adı soyadı
-                    </label>
-                    <input
-                        id="custom-input"
-                        type="text"
-                        // placeholder={isFocused ? "example@gmail.com" : ""}
-                        onFocus={() => setIsFocused(true)}
-                        onBlur={() => setIsFocused(false)}
-                        onChange={(e) => setInputValue(e.target.value)}
+                    <Input
+                        placeholder="Adı soyadı" // label yerine placeholder kullanıyoruz
                         value={inputValue}
+                        onChange={(e) => setInputValue(e.target.value)}
                     />
                 </div>
             </div>

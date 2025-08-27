@@ -1,13 +1,18 @@
-import React from "react";
-import { Badge, Table, Tooltip } from "antd";
+import React, { useState } from "react";
+import { Badge, Input, Table, Tooltip } from "antd";
 import { MdCarRepair } from "react-icons/md";
 import { MdBusinessCenter } from "react-icons/md";
 import { IoIosAddCircle } from "react-icons/io";
 import { IoPrintSharp } from "react-icons/io5";
 import { MdLocationPin } from "react-icons/md";
+import { motion, AnimatePresence } from "framer-motion";
+
+import { FaSearch } from "react-icons/fa";
 
 
 const Active = () => {
+
+    const [showSearch, setShowSearch] = useState(false);
     const columns = [
         {
             title: "Maşın Şəkili",
@@ -180,7 +185,34 @@ const Active = () => {
                         Yeni maşın əlavə et
                     </button>
                 </div>
-                <div>
+
+                <div className="d-flex align-items-center gap-4">
+                    <div className="d-flex align-items-center gap-2">
+                        <AnimatePresence>
+                            {showSearch && (
+                                <motion.div
+                                    initial={{ width: 0, opacity: 0 }}
+                                    animate={{ width: 200, opacity: 1 }}
+                                    exit={{ width: 0, opacity: 0 }}
+                                    transition={{ type: "spring", stiffness: 300, damping: 20 }}
+                                    className="ms-2"
+                                >
+                                    <Input
+                                        placeholder="Axtar..."
+                                        autoFocus
+                                        style={{ borderRadius: "12px" }}
+                                    />
+                                </motion.div>
+                            )}
+                        </AnimatePresence>
+                        <FaSearch
+                            className="thon_new fs-20 cursor-pointer thon_homeSearchIcon"
+                            style={{ marginLeft: showSearch ? 0 : 8 }}
+                            onClick={() => setShowSearch((prev) => !prev)}
+                        />
+                    </div>
+
+
                     <Badge.Ribbon text="Tezliklə" color="orange">
                         <div style={{ pointerEvents: 'none', opacity: 0.6 }}>
                             <button className="thon_TableButton thon_print d-flex align-items-center">

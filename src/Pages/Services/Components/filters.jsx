@@ -1,128 +1,55 @@
-import React, { useEffect, useRef } from "react";
-import { MdOutlineKeyboardArrowDown } from "react-icons/md";
+import React from "react";
+import { Select, Input, Space } from "antd";
 import { useFilter } from "../../../Contexts/Services/filters";
 
+const { Option } = Select;
+
 const Filters = () => {
-    const { 
-        isOpenStatus, setIsOpenStatus, selectedStatus, setSelectedStatus,
-        isOpenType, setIsOpenType, selectedType, setSelectedType,
-        inputValue, setInputValue, isFocused, setIsFocused
+    const {
+        selectedStatus, setSelectedStatus,
+        selectedType, setSelectedType,
+        inputValue, setInputValue
     } = useFilter();
 
-    // Dropdown'lar ve input için referanslar
-    const dropdownRefStatus = useRef(null);
-    const dropdownRefType = useRef(null);
-    const inputRef = useRef(null);
-
-    // Sayfanın herhangi bir yerine tıklandığında dropdown'ları kontrol eden fonksiyon
-    useEffect(() => {
-        const handleClickOutside = (event) => {
-            // Eğer dışarıya tıklanmışsa dropdown'ları kapat
-            if (
-                dropdownRefStatus.current && !dropdownRefStatus.current.contains(event.target) &&
-                dropdownRefType.current && !dropdownRefType.current.contains(event.target) &&
-                inputRef.current && !inputRef.current.contains(event.target)
-            ) {
-                setIsOpenStatus(false);
-                setIsOpenType(false);
-                setIsFocused(false);
-            }
-        };
-
-        document.addEventListener("mousedown", handleClickOutside);
-        return () => document.removeEventListener("mousedown", handleClickOutside);
-    }, []);
-
-    // Status dropdown açıldığında Type dropdown kapanır
-    const toggleStatusDropdown = () => {
-        setIsOpenStatus((prev) => !prev);
-        setIsOpenType(false); // Diğer dropdownu kapat
-    };
-
-    // Type dropdown açıldığında Status dropdown kapanır
-    const toggleTypeDropdown = () => {
-        setIsOpenType((prev) => !prev);
-        setIsOpenStatus(false); // Diğer dropdownu kapat
-    };
-
-    const handleSelectStatus = (value) => {
-        setSelectedStatus(value);
-        setIsOpenStatus(false);
-    };
-
-    const handleSelectType = (value) => {
-        setSelectedType(value);
-        setIsOpenType(false);
-    };
-
-    // Input'a tıklandığında dropdown'ları kapat
-    const handleInputFocus = () => {
-        setIsFocused(true);
-        setIsOpenStatus(false);
-        setIsOpenType(false);
-    };
-
     return (
-        <>
+        <Space size="middle" wrap>
+
             {/* Status Dropdown */}
-            <div className="me-3">
-                <div className="dropdown-container" ref={dropdownRefStatus}>
-                    <div className="dropdown" onClick={toggleStatusDropdown}>
-                        <div className="dropdown-selected d-flex justify-content-between">
-                            {selectedStatus || "Seçiniz..."}
-                            <div className="ms-3">
-                                <MdOutlineKeyboardArrowDown />
-                            </div>
-                        </div>
-                        <div className={`dropdown-options ${isOpenStatus ? "open" : ""}`}>
-                            {["Hamisi", "Seçenek 1", "Seçenek 2", "Seçenek 3", "Seçenek 4"].map((item) => (
-                                <div key={item} className="dropdown-option" onClick={() => handleSelectStatus(item)}>
-                                    {item}
-                                </div>
-                            ))}
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-            {/* Type Dropdown */}
-            <div className="me-3">
-                <div className="dropdown-container" ref={dropdownRefType}>
-                    <div className="dropdown" onClick={toggleTypeDropdown}>
-                        <div className="dropdown-selected d-flex">
-                            {selectedType || "Seçiniz..."}
-                            <div className="ms-3">
-                                <MdOutlineKeyboardArrowDown />
-                            </div>
-                        </div>
-                        <div className={`dropdown-options ${isOpenType ? "open" : ""}`}>
-                            {["Hamisi", "Seçenek 1", "Seçenek 2", "Seçenek 3", "Seçenek 4"].map((item) => (
-                                <div key={item} className="dropdown-option" onClick={() => handleSelectType(item)}>
-                                    {item}
-                                </div>
-                            ))}
-                        </div>
-                    </div>
-                </div>
-            </div>
-
+            <Select
+                placeholder="Status Seçiniz..."
+                value={selectedStatus}
+                onChange={setSelectedStatus}
+                style={{ minWidth: 150 }}
+            >
+                {["Hamisi", "Seçenek 1", "Seçenek 2", "Seçenek 3", "Seçenek 4"].map((item) => (
+                    <Option key={item} value={item}>
+                        {item}
+                    </Option>
+                ))}
+            </Select>
             {/* Input Alanı */}
-            <div className={`input-container me-3 ${isFocused || inputValue ? "focused" : ""}`} ref={inputRef}>
-                <label htmlFor="custom-inputService" className="input-label" onClick={handleInputFocus}>
-                    Adı
-                </label>
-                <input
-                    id="custom-inputService"
-                    type="text"
-                    onFocus={handleInputFocus}
-                    onBlur={() => setIsFocused(false)}
-                    onChange={(e) => setInputValue(e.target.value)}
-                    value={inputValue}
-                />
-            </div>
+            <Input
+                placeholder="Adı"
+                value={inputValue}
+                onChange={(e) => setInputValue(e.target.value)}
+                style={{ minWidth: 200 }}
+            />
+            {/* Type Dropdown */}
+            <Select
+                placeholder="Type Seçiniz..."
+                value={selectedType}
+                onChange={setSelectedType}
+                style={{ minWidth: 150 }}
+            >
+                {["Hamisi", "Seçenek 1", "Seçenek 2", "Seçenek 3", "Seçenek 4"].map((item) => (
+                    <Option key={item} value={item}>
+                        {item}
+                    </Option>
+                ))}
+            </Select>
 
-            
-        </>
+
+        </Space>
     );
 };
 

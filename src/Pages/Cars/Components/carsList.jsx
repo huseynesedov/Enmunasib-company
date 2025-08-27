@@ -4,6 +4,7 @@ import { MdDelete } from "react-icons/md";
 import { CiEdit } from "react-icons/ci";
 import { TiTick } from "react-icons/ti";
 import { GrEdit } from "react-icons/gr";
+import FilterBar from "./filter";
 const CarsList = () => {
     const [inputValue, setInputValue] = useState("");
     const [isFocused, setIsFocused] = useState(false);
@@ -275,58 +276,13 @@ const CarsList = () => {
 
     return (
         <>
-            <div className="col mt-3 d-flex align-items-center">
-                <div className="me-3">
-                    <div className="dropdown-container">
-                        <div
-                            className="dropdown"
-                            onClick={toggleDropdown}
-                            ref={dropdownRef} // Ref'yi burada kullanıyoruz
-                        >
-                            <div className="dropdown-selected">
-                                {selectedValue || "Status"}
-                            </div>
-                            <div className={`dropdown-arrow ${isOpen ? "open" : ""}`}></div>
-                            <div className={`dropdown-options ${isOpen ? "open" : ""}`}>
-                                <div className="dropdown-option" onClick={() => handleSelect("Seçenek 1")}>
-                                    Hamisi
-                                </div>
-                                <div className="dropdown-option" onClick={() => handleSelect("Seçenek 1")}>
-                                    Seçenek 1
-                                </div>
-                                <div className="dropdown-option" onClick={() => handleSelect("Seçenek 2")}>
-                                    Seçenek 2
-                                </div>
-                                <div className="dropdown-option" onClick={() => handleSelect("Seçenek 3")}>
-                                    Seçenek 3
-                                </div>
-                                <div className="dropdown-option" onClick={() => handleSelect("Seçenek 4")}>
-                                    Seçenek 4
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div className={`input-container ${isFocused || inputValue ? "focused" : ""}`}>
-                    <label
-                        htmlFor="custom-input"
-                        className="input-label"
-                        onClick={() => document.getElementById("custom-input").focus()}
-                    >
-                        Nömrəsi
-                    </label>
-                    <input
-                        id="custom-input"
-                        type="text"
-                        placeholder={isFocused ? "10-AB-123" : ""}
-                        onFocus={() => setIsFocused(true)}
-                        onBlur={() => setIsFocused(false)}
-                        onChange={handleInputChange}
-                        value={inputValue}
-                    />
-                </div>
-            </div>
-
+            <FilterBar
+                selectedValue={selectedValue}
+                setSelectedValue={setSelectedValue}
+                inputValue={inputValue}
+                setInputValue={setInputValue}
+                
+            />
             {/* Cədvəl */}
             <div className="table-responsive-wrapper mt-4">
                 <Table

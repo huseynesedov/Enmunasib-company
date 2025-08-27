@@ -160,7 +160,7 @@ const RezervHandOver = ({ isOpen, onClose }) => {
               <>
                 <Form.Item
                   name="problemFrom"
-                  label="Bildirən şəxs"
+                  label="Problemli şəxs:"
                   rules={[
                     { required: true, message: "Zəhmət olmasa biri seçin" },
                   ]}

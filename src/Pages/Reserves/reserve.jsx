@@ -4,7 +4,7 @@ import { Content } from 'antd/es/layout/layout';
 
 import RezerveList from './Components/reservesList';
 
-import AddRezerv from '@modals/Home/BookNow/rezerv';
+import AddRezerv from '@modals/Rezerve/rezerv.add';
 
 
 const Rezerve = () => {
