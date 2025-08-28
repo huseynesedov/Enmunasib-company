@@ -1,6 +1,6 @@
 import React from "react";
 import { Select, Input, Space } from "antd";
-import { useFilter } from "../../../Contexts/Services/filters";
+import { useFilter } from "@contexts/Services/filters";
 
 const { Option } = Select;
 

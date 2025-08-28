@@ -33,7 +33,7 @@ const RepairList = () => {
       )
     },
     { 
-      title: "Yağ", 
+      title: "Detal", 
       dataIndex: 'oil', 
       key: 'oil',
       render: (_, record) => (
@@ -43,8 +43,7 @@ const RepairList = () => {
             title={
               <div>
                 <div>Adı: {record.oilName}</div>
-                <div>Növü: {record.oilType}</div>
-                <div>Kateqoriya: {record.oilCategory}</div>
+                <div>Qiymeti: {record.price}</div>
               </div>
             }
           >
@@ -53,8 +52,6 @@ const RepairList = () => {
         </>
       )
     },
-    { title: 'Hazırki KM', dataIndex: 'km1', key: 'km1' },
-    { title: 'Zəmanət KM', dataIndex: 'km2', key: 'km2' },
     { 
       title: "Usta / Servis", 
       dataIndex: 'master_service', 

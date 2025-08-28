@@ -18,10 +18,10 @@ import LeftBar from "./Layout/Leftbar/leftbar";
 import Header from "./Layout/Header/header";
 import Login from './Pages/Partners/partners';
 
-import { AuthProvider, useAuth } from './Contexts/Login/loginContext';
-import { ServicesFiltersProvider } from './Contexts/Services/filters';
-import { RezervsFiltersProvider } from './Contexts/Rezervs/filters';
-import { DriversFiltersProvider } from './Contexts/Drivers/filter';
+import { AuthProvider, useAuth } from '@contexts/Login/loginContext';
+import { ServicesFiltersProvider } from '@contexts/Services/filters';
+import { RezervsFiltersProvider } from '@contexts/Rezervs/filters';
+import { DriversFiltersProvider } from '@contexts/Drivers/filter';
 
 
 const AppContent = () => {

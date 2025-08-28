@@ -17,7 +17,7 @@ const RepairMain = () => {
 
                 <div className='d-flex flex-wrap' style={{ gap: "9px 0px" }}>
                     <button 
-                        className='thon_add_button me-2'
+                        className='thon_add_button'
                         onClick={() => setIsAvtoServiceModal(true)}
                     >
                         Əlavə et

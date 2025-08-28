@@ -21,7 +21,7 @@ const Workers = () => {
 
 
                 <div className='d-flex flex-wrap' style={{ gap: "9px 0px" }}>
-                    <button className='thon_add_button me-2'
+                    <button className='thon_add_button'
                         onClick={() => setIsWorkerModal(true)}
                     >
                         Əlavə et

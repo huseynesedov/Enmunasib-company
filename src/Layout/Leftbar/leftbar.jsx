@@ -1,6 +1,6 @@
 import React, { useContext, useEffect } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
-import { AuthContext } from '../../Contexts/Login/loginContext';
+import { AuthContext } from '@contexts/Login/loginContext';
 import { motion } from 'framer-motion';
 import { Badge } from 'antd';
 import { FaCalculator, FaAngleRight, FaUserFriends, FaIdCardAlt } from "react-icons/fa";
